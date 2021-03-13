@@ -8,15 +8,34 @@
 import CoreData
 
 struct PersistenceController {
+    
+    
     static let shared = PersistenceController()
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-        }
+
+        
+        let newMeal = Meal(context:viewContext)
+        newMeal.mealName = "burgers"
+        newMeal.mealLink = "www.google.com"
+        newMeal.mealNotes = "Lorem Ipsum"
+        
+        
+        
+        let newDate = Dates(context:viewContext)
+        newDate.date = Date()
+        newDate.meal = Meal(context: viewContext)
+        newDate.mealTypeNameStatus = .lunch
+        
+        let newIngredient = Ingredients(context: viewContext)
+        newIngredient.ingredientName = "Ing 1"
+        newIngredient.ingredientQuantity = 1
+        newIngredient.isChecked = false
+        newIngredient.isSelected = true
+        newIngredient.ingredientMeasurement = "kilo"
+        
         do {
             try viewContext.save()
         } catch {

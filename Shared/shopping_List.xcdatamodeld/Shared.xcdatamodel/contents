@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Dates" representedClassName="Dates" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="mealType" attributeType="String" defaultValueString="breakfast"/>
+        <relationship name="meal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="meal" inverseEntity="Meal"/>
+    </entity>
+    <entity name="Ingredients" representedClassName="Ingredients" syncable="YES">
+        <attribute name="ingredientID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="ingredientMeasurement" optional="YES" attributeType="String"/>
+        <attribute name="ingredientName" attributeType="String" defaultValueString="ingredient"/>
+        <attribute name="ingredientQuantity" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isChecked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <relationship name="mealIngredientList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="myIngredientList" inverseEntity="Meal"/>
+    </entity>
+    <entity name="Meal" representedClassName="Meal" syncable="YES">
+        <attribute name="mealID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="mealLink" optional="YES" attributeType="String"/>
+        <attribute name="mealName" attributeType="String" defaultValueString=""/>
+        <attribute name="mealNotes" optional="YES" attributeType="String"/>
+        <relationship name="meal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Dates" inverseName="meal" inverseEntity="Dates"/>
+        <relationship name="myIngredientList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredients" inverseName="mealIngredientList" inverseEntity="Ingredients"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="Dates" positionX="282.5498046875" positionY="37.43975830078125" width="128" height="74"/>
+        <element name="Ingredients" positionX="77.81768798828125" positionY="248.098388671875" width="128" height="134"/>
+        <element name="Meal" positionX="-341.9925537109375" positionY="90.91256713867188" width="128" height="119"/>
     </elements>
 </model>

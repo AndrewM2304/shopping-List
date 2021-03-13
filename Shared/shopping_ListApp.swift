@@ -15,6 +15,7 @@ struct shopping_ListApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                
         }
     }
 }
