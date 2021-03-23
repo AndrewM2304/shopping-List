@@ -14,10 +14,15 @@ struct navBarView: View {
   
     @AppStorage("theme") var currentTheme: colorTheme = .green
  var curved = true
+    @State var text = ""
     var body: some View {
         
         if(curved == true){
         VStack {
+           TextEditor(text: .constant("Placeholder"))
+            .foregroundColor(.secondary)
+            .background(Color.red)
+            .mask(Color.red)
             navShape()
                 .fill(currentTheme.colors.gradient)
                 .overlay(

@@ -7,52 +7,33 @@
 
 import SwiftUI
 
-struct ingredientSection: View {
+struct sectionBreak: View {
     @State var viewing: Int
+    @State var mainText : String
+    @State var secondaryText : String
+    @State var multiText = false
     var body: some View{
         VStack (alignment:.leading, spacing: 2){
             HStack {
-                Text("Ingredients: ".uppercased()).foregroundColor(Color.primary)
+                Text(mainText.uppercased())
+                    .interTextStyle(text: "Inter-ExtraBold", size: 12, color: Color.white)
                 Text("\(viewing)").foregroundColor(Color("section")).opacity(0.01)
                 Spacer()
             }
+            if(multiText == true){
+            Text(secondaryText)
             
-            Text("Selected ingredients will be added to shopping list")
-                
-                .foregroundColor(Color.secondary)
+                .interTextStyle(text: "Inter-SemiBold", size: 10, color: Color.white.opacity(0.6))
+            }
         }
         .padding(10)
-        .font(Font.caption.weight(.medium))
+        
         .padding(.horizontal, 5)
-        .background(Color("section"))
+        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.1215686275, green: 0.1490196078, blue: 0.168627451, alpha: 1)), Color(#colorLiteral(red: 0.07058823529, green: 0.1137254902, blue: 0.137254902, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing))
+        .border(Color.white.opacity(0.1))
     }
 }
 
-struct selectDatesSection : View {
-    @Environment(\.presentationMode) var presentationMode
-    @AppStorage("theme") var currentTheme: colorTheme = .green
-    @Binding var dateList : [Dates]
-    @Binding var addMealCount: Int
-    
-    var body: some View{
-        Section (header: Text("Select Dates").font(.subheadline)
-                    .foregroundColor(Color.primary)){
-            
-            HStack {
-                if(addMealCount > -1){
-                Text(" \(addMealCount) dates selected").foregroundColor(.primary)
-                } else{
-                    Text(" \(addMealCount) dates removed").foregroundColor(.primary)
-                }
-                Spacer()
-                Image(systemName: "plus.circle.fill")
-                    .foregroundColor(currentTheme.colors.mainColor)
-            }
-            .padding(.vertical, 10)
-            
-        }
-    }
-}
 
 
 struct textfieldSection: View {
@@ -60,23 +41,39 @@ struct textfieldSection: View {
     @Binding var textField:String
     @State var keyboardType : UIKeyboardType
     @State var multiLine = false
+    @State var gradient: LinearGradient
     
     var body: some View {
-        Section (header: Text(sectionHeader).font(.subheadline)
-                    .foregroundColor(Color.primary)){
+        Section (header: Text(sectionHeader)
+                    .interTextStyle(text: "Inter-Medium", size: 15, color: Color.white)
+                    ){
             if(multiLine == false){
-                TextField("Enter \(sectionHeader)", text: $textField)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.bottom, 20)
+                ZStack (alignment: .leading){
+                    if (textField == "" ){
+                        Text("Enter \(sectionHeader)")
+                            .interTextStyle(text: "Inter-Medium", size: 15, color: Color.white.opacity(0.4))
+                            .padding(.horizontal, 10)
+                    }
+                   
+                TextField("",text: $textField)
+                    .textFieldStyle(CustomTextFieldStyle())
+                   
+                    
+                        RoundedRectangle(cornerRadius: 4, style: .continuous)
+                            .stroke(gradient, lineWidth: 1)
+                            .opacity( textField == "" ? 0 : 1)
+                        
+                    
                     .keyboardType(keyboardType)
+                }
+                .background(Color(#colorLiteral(red: 0.05490196078, green: 0.06274509804, blue: 0.07058823529, alpha: 1)))
+                .padding(.bottom, 20)
             } else {
                 TextEditor(text: $textField)
-                    .cornerRadius(8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8).stroke((Color.primary).opacity(0.1), lineWidth: 1.0)
-                    )
+                    .textFieldStyle(CustomTextFieldStyle())
                     .frame(height:80)
                     .padding(.bottom, 20)
+                    
             }
         }
     }
@@ -86,15 +83,27 @@ struct ingredientInput : View{
     @Binding var textField:String
     var buttonAction: () -> Void
     var keyboardReturn: () -> Void
+    var onTap: () -> Void
     @AppStorage("theme") var currentTheme: colorTheme = .green
 
     var body: some View{
-        HStack {
-            TextField("Add Ingredient", text: $textField, onCommit: keyboardReturn)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .onTapGesture {
-    //                        self.showKeyboard = true
+        HStack (spacing: 0) {
+            ZStack (alignment: .leading){
+                if (textField == "" ){
+                    Text("Enter Ingredient")
+                        .interTextStyle(text: "Inter-Medium", size: 15, color: Color.white.opacity(0.4))
+                        .padding(.horizontal, 10)
                 }
+               
+            TextField("",text: $textField)
+                .textFieldStyle(CustomTextFieldStyle())
+               
+                
+                    RoundedRectangle(cornerRadius: 4, style: .continuous)
+                        .stroke(currentTheme.colors.gradient, lineWidth: 1)
+                        .opacity( textField == "" ? 0 : 1)
+            }.background(Color(#colorLiteral(red: 0.05490196078, green: 0.06274509804, blue: 0.07058823529, alpha: 1)))
+                
             if let buttonAction = self.buttonAction {
             Button(action: {
                 withAnimation{
@@ -103,10 +112,26 @@ struct ingredientInput : View{
             }, label: {
                 Image(systemName: "plus.circle.fill")
                     .foregroundColor(currentTheme.colors.mainColor)
-                    .padding(20)
+                    .padding(.leading, 20)
             })
+            }
+        }
+        .onTapGesture {
+            withAnimation{
+                onTap()
             }
         }
     }
 
+}
+
+
+struct textfieldSection_Previews: PreviewProvider {
+    @State static var text = ""
+    @State static var heading = "hi andrew"
+    
+    static var previews: some View {
+        
+        ingredientInput(textField: $text, buttonAction: {}, keyboardReturn: {}, onTap: {})
+    }
 }

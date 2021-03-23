@@ -25,34 +25,48 @@ struct shoppingListView: View {
     var body: some View {
       
         
-        VStack{
-            navBarView(curved: false)
-                .overlay(
+        ZStack (alignment: .top){
+            radialBackgroundView()
+            VStack{
+                
+                
+                HStack{
+                    Spacer()
+                VStack (spacing: 5){
+                HStack (alignment: .center){
                     Text("Shopping List")
-                        .whiteTitleStyle()
-                    
-                )
-                .overlay(menuItems)
-
-            
-            
-            HStack {
-                TextField("Add Ingredient", text: $ingredient, onCommit: addIngredients)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Button(action: {
-                    withAnimation{
-                        addIngredients()
-                        
-                    }
-                }, label: {
-                    Image(systemName: "plus.circle.fill")
-                        .foregroundColor(currentTheme.colors.mainColor)
-                        .padding(10)
-                })
+                        .interTextStyle(text: "Inter-ExtraBold", size: 28, color: Color.white)
+                Spacer()
+                    menuItems
             }
-            .padding(.horizontal, 15)
-            .padding(.vertical, 10)
-            .background(Color("section"))
+                    HStack {
+                        TextField("Add Ingredient", text: $ingredient, onCommit: addIngredients)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                        Button(action: {
+                            withAnimation{
+                                addIngredients()
+                                
+                            }
+                        }, label: {
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundColor(currentTheme.colors.mainColor)
+                                .padding(.vertical, 10)
+                                .padding(.leading, 20)
+                        })
+                    }
+                }
+                
+                .frame(maxWidth: 600)
+                   
+                    
+            }
+                .padding(.top, UIDevice.current.hasNotch ? 40 : 20)
+                .padding( 10)
+                .modifier(pageHeader())
+                
+ 
+
             ScrollView{
             VStack (spacing: 0){
                 ForEach(listingredients){ ingredient in
@@ -66,15 +80,19 @@ struct shoppingListView: View {
                     }
                 }.dismissKeyboardOnTap()
             }
-            Spacer()
+
+
         }
+            .frame(maxWidth: 600)
+            
         }.dismissKeyboardOnTap()
+        }
+        .edgesIgnoringSafeArea(.bottom)
     }
     
     
     var menuItems : some View{
-        HStack{
-            Spacer()
+
             Menu{
                
                 Text("Menu Item 2")
@@ -86,9 +104,10 @@ struct shoppingListView: View {
             }
             label: {
                 Image(systemName: "ellipsis.circle").foregroundColor(.white)
-                    .padding()
+                    .padding(.vertical, 20)
+                    .padding(.leading, 20)
             }
-        }.padding(.top, 30)
+        
         
     }
     private func addIngredients() {

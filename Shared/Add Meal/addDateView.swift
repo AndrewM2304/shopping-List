@@ -17,16 +17,18 @@ struct addDateView: View {
             HStack (spacing:15){
                 Group{
                 if(addDate.monthFormatter.string(from: addDate.dates[0].actualDate) == addDate.monthFormatter.string(from: addDate.dates[6].actualDate)) {
-                    Image(systemName: "calendar")
+                    
                     Text("\(addDate.dateFormatter.string(from:addDate.dates[0].actualDate)) - \(addDate.dateFormatter.string(from:addDate.dates[6].actualDate))")
                     Text(addDate.monthFormatter.string(from:addDate.dates[6].actualDate))
                 } else {
-                    Image(systemName: "calendar")
+                   
                     
                     Text("\(addDate.dateFormatter.string(from:addDate.dates[0].actualDate)) \(addDate.monthFormatter.string(from:addDate.dates[0].actualDate)) - \(addDate.dateFormatter.string(from:addDate.dates[6].actualDate))")
                     Text(addDate.monthFormatter.string(from:addDate.dates[6].actualDate))
                 }
                 }
+                .font(.custom("Inter-ExtraBold", size: 20))
+                .foregroundColor(.white)
                 Spacer()
                 Group{
                 Button(action: {addDate.decrementDate()}, label: {
@@ -37,9 +39,9 @@ struct addDateView: View {
                     Image(systemName: "chevron.right")
                 })
                 }
-                .padding(10)
-                .foregroundColor(.primary)
-                .background(Color.secondary.opacity(0.15))
+                .padding(15)
+                .foregroundColor(.white)
+                .background(Color.white.opacity(0.08))
                 .clipShape(Circle())
                 
                 
@@ -48,16 +50,18 @@ struct addDateView: View {
             
             ForEach(addDate.dates, id: \.self){ date in
                 
-                HStack (spacing: 10){
+                HStack {
                     Text("\(addDate.dayFormatter.string(from:date.actualDate))")
-                        .font(Font.body.weight(.semibold))
-                        .frame(width: 30)
+                        .font(.custom("Inter-ExtraBold", size: 17))
+                        .foregroundColor(.white)
+                        .frame(width: 20)
+                        .padding(.trailing, 10)
                     ForEach(mealTypeName.allCases, id: \.self){ value in
                         menuButton(value: value, date: date)
 
-                        
+                        if(value.rawValue != "Dinner"){
                         Spacer()
-                        
+                        }
                     }
                 }.frame(maxWidth: .infinity)
             }
@@ -83,6 +87,10 @@ struct addDateView: View {
 struct addDateView_Previews: PreviewProvider {
     static var addmeal = addMealViewModel()
     static var previews: some View {
-        addDateView(addDate: addmeal)
+        Group {
+            addDateView(addDate: addmeal)
+            
+        }
+        .preferredColorScheme(.dark)
     }
 }

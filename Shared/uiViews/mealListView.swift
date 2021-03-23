@@ -73,7 +73,7 @@ struct mealListView: View {
             
             }
             
-        }
+        }.frame(maxWidth: 600)
         
     }
     func removeMeal(at offsets: IndexSet) {

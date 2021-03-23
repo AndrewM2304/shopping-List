@@ -11,8 +11,23 @@
 		</dict>
 		<key>shopping List (macOS).xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>F8F859EC259CB72C0093A3C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F8F859FF259CB72D0093A3C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
