@@ -23,14 +23,14 @@ struct selectMealButtonView: View {
         Button(action: {vibratePress();   delete ? addDateLocal() : deleteDate()
         }, label: {
             Text(mealName)
-                .font(Font.footnote.weight(delete ? .regular : .medium))
-                .padding(.vertical, 10)
+                .font(.custom("Inter-ExtraBold", size: 13))
+                .lineLimit(nil)
+                .padding(.vertical, 11)
                 .frame(minWidth: 80)
-                .foregroundColor(delete ? .secondary : .white )
-                .background(delete ? Color("CardBackground") : currentTheme.colors.mainColor )
+                .foregroundColor(.white )
+                .background(delete ? (LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.1215686275, green: 0.1490196078, blue: 0.168627451, alpha: 1)), Color(#colorLiteral(red: 0.07058823529, green: 0.1137254902, blue: 0.137254902, alpha: 1))]), startPoint: .leading, endPoint: .trailing)) : currentTheme.colors.gradient )
                 .cornerRadius(8)
-                .overlay(RoundedRectangle(cornerRadius: 8).stroke(delete ? Color.secondary.opacity(0.3) : currentTheme.colors.mainColor , lineWidth: 1))
-                .shadow(color: Color("shadow").opacity( delete ? 0 : 0.2), radius: 8, x: 0.0, y: 2)
+                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.08) , lineWidth: 1))
         }).buttonStyle(popButtonStyle())
         
     }
@@ -58,7 +58,13 @@ struct selectMealButtonView_Previews: PreviewProvider {
     static var mealtype: mealTypeName = .breakfast
     static var date = Date()
     static var previews: some View {
-        selectMealButtonView(addDate: vm, date: date, delete: true, mealName: name, mealtype:mealtype)
-            .preferredColorScheme(.dark)
+
+        Group {
+            selectMealButtonView(addDate: vm, date: date, delete: true, mealName: name, mealtype:mealtype)
+                .preferredColorScheme(.dark)
+            
+        }
+            
+        
     }
 }

@@ -15,6 +15,7 @@ struct addMealView: View {
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @AppStorage("theme") var currentTheme: colorTheme = .green
 
     @State var UpdateUI = 0
     @State var showKeyboard = true
@@ -47,61 +48,60 @@ struct addMealView: View {
     
     var body: some View {
         ScrollView {
-            VStack (spacing: 0){
-            VStack(alignment: .leading, spacing: 0){
-                VStack (alignment: .leading, spacing: 5){
-                    textfieldSection(sectionHeader: "Meal Name", textField: $mealNameText, keyboardType: .default)
-                    textfieldSection(sectionHeader: "Link to Recipe", textField: $mealLinkText, keyboardType: .URL)
-                    textfieldSection(sectionHeader: "Notes about meal", textField: $mealNotesText, keyboardType: .default, multiLine: true)
-                    addDateView(addDate: addMealObject)
-                }
-                .padding()
-                
-                
-                ingredientSection(viewing: UpdateUI)
-                ingredientListView(arrayName: $addMealObject.ingredientList, shoppingListItem: false, viewing: $UpdateUI, selectedIngredient: $addIngredientObject.selectedIngredient, showOverlay: $showOverlay)
-            }
-            .padding(.bottom, 10)
-               
-            
-            ingredientInput(textField: $ingredientName,buttonAction:{addItem()}, keyboardReturn:{
-                addItem()
-                self.showKeyboard = false
-                
-            })
-            .onTapGesture {
-                self.showKeyboard = true
-            }
-//            .padding(.leading)
+                    VStack (spacing: 0){
+                    VStack(alignment: .leading, spacing: 0){
+                        VStack (alignment: .leading, spacing: 5){
+                            textfieldSection(sectionHeader: "Meal Name", textField: $mealNameText, keyboardType: .default, gradient: currentTheme.colors.gradient)
+                            textfieldSection(sectionHeader: "Link to Recipe", textField: $mealLinkText, keyboardType: .URL, gradient: currentTheme.colors.gradient)
+                            textfieldSection(sectionHeader: "Notes about meal", textField: $mealNotesText, keyboardType: .default, multiLine: true, gradient: currentTheme.colors.gradient)
+                            addDateView(addDate: addMealObject)
+                        }
+                        .padding()
+                        
+                        
+                        sectionBreak(viewing: UpdateUI, mainText: "Ingredients", secondaryText: "something here")
+                        ingredientListView(arrayName: $addMealObject.ingredientList, shoppingListItem: false, viewing: $UpdateUI, selectedIngredient: $addIngredientObject.selectedIngredient, showOverlay: $showOverlay)
+                    }
+                    .padding(.bottom, 10)
 
-//            .sheet(isPresented: $showOverlay, content: {
-////                weightAdjustView(ingredient: addMealObject.selectedIngredient, shoppingItemWeight: false)
-//                Text(addMealObject.selectedIngredient.ingredientName ?? "help")
-//
-//            })
-                Button(action: {addMealObject.saveMeal(managedObjectContext: viewContext, myMealName: mealNameText);self.presentationMode.wrappedValue.dismiss()}, label: {
-                Text("save")
-            })
-            .buttonStyle(primaryButtonStyle()).padding()
-                .padding(.bottom, 40)
-            }
-            .offset(y: showKeyboard ? -(CGFloat(addMealObject.ingredientList.count) * 60) : 0)
+    
+                    ingredientInput(textField: $ingredientName,buttonAction:{addItem()}, keyboardReturn:{
+                        addItem()
+                        self.showKeyboard = false
+                        
+                    }, onTap: {self.showKeyboard = true})
+                    .padding(.horizontal, 15)
+                    }
+                    
+                    .offset(y: showKeyboard ? -(keyboard.currentHeight - 40) : 0)
+                    
+                    .alert(isPresented: $addMealObject.showAlert,
+                           content: { Alert(title: Text("error"), message: Text(addMealObject.alertMsg), dismissButton: .default(Text("OK"))) })
             
-            .alert(isPresented: $addMealObject.showAlert,
-                   content: { Alert(title: Text("error"), message: Text(addMealObject.alertMsg), dismissButton: .default(Text("OK"))) })
-        }
+            
+            Button(action: {addMealObject.saveMeal(managedObjectContext: viewContext, myMealName: mealNameText);self.presentationMode.wrappedValue.dismiss()}, label: {
+            Text("save")
+                .interTextStyle(text: "Inter-ExtraBold", size: 17, color: Color.white)
+                .frame(maxWidth: .infinity)
+                .padding(15)
+        })
+            .buttonStyle(primaryButtonStyle(gradient: currentTheme.colors.gradient)).padding()
+            .padding(.bottom, 30)
+                }.frame(maxWidth: 600)
         
-        .onAppear{
-            self.showKeyboard = false
-            self.mealNameText = addMealObject.mealName
-            self.mealNotesText = addMealObject.mealNotes
-            self.mealLinkText = addMealObject.mealUrl
-        }
-        .dismissKeyboardOnTap()
-        .padding(.bottom, keyboard.currentHeight + 15)
-        .animation(.default)
+        .background(radialBackgroundView())
+                .onAppear{
+                    self.showKeyboard = false
+                    self.mealNameText = addMealObject.mealName
+                    self.mealNotesText = addMealObject.mealNotes
+                    self.mealLinkText = addMealObject.mealUrl
+                }
+                .dismissKeyboardOnTap()
         
-    }
+               
+                .animation(.default)
+                
+            }
     
     
     

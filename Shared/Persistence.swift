@@ -17,10 +17,20 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
 
         
-        let newMeal = Meal(context:viewContext)
-        newMeal.mealName = "burgers"
-        newMeal.mealLink = "www.google.com"
-        newMeal.mealNotes = "Lorem Ipsum"
+        let newIngredient = Ingredients(context: viewContext)
+        newIngredient.ingredientName = "Ing 1"
+        newIngredient.ingredientQuantity = 1
+        newIngredient.isChecked = false
+        newIngredient.isSelected = true
+        newIngredient.ingredientMeasurement = "kilo"
+        
+        let newIngredient2 = Ingredients(context: viewContext)
+        newIngredient2.ingredientName = "Ing 1"
+        newIngredient2.ingredientQuantity = 1
+        newIngredient2.isChecked = false
+        newIngredient2.isSelected = true
+        newIngredient2.ingredientMeasurement = "kilo"
+        
         
         
         
@@ -29,12 +39,14 @@ struct PersistenceController {
         newDate.meal = Meal(context: viewContext)
         newDate.mealTypeNameStatus = .lunch
         
-        let newIngredient = Ingredients(context: viewContext)
-        newIngredient.ingredientName = "Ing 1"
-        newIngredient.ingredientQuantity = 1
-        newIngredient.isChecked = false
-        newIngredient.isSelected = true
-        newIngredient.ingredientMeasurement = "kilo"
+        let newMeal = Meal(context:viewContext)
+        newMeal.mealName = "burgers and chips"
+        newMeal.mealLink = "www.google.com"
+        newMeal.mealNotes = "Lorem Ipsum dolat amit this is a really long note what will it look like on the screen over 3 pages? Wow this is actually super long I need to type more"
+        newMeal.myIngredientList = [newIngredient, newIngredient2]
+        newMeal.meal = [newDate, newDate]
+
+        
         
         do {
             try viewContext.save()

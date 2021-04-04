@@ -39,9 +39,9 @@ struct checkmarkItemView: View {
                     .opacity( showWeights ? 0 : 1)
                     .zIndex(2)
                     
-                    .frame(width:4, height:  showWeights ? 0 : 100)
+                    .frame(width:4, height:  showWeights ? 0 : 105)
                     
-            HStack (alignment: .top){
+            HStack (alignment: .center){
                 Button(action: {
                         buttonAction()}
                        , label: {
@@ -50,20 +50,24 @@ struct checkmarkItemView: View {
                             if(shoppingListItem == false){
                                 Image(systemName: ingredient.isSelected ? "checkmark.square.fill" : "square")
                                     .padding(.horizontal, 10)
-                                    .foregroundColor(ingredient.isSelected ? currentTheme.colors.mainColor : .primary)
+                                    .foregroundColor(ingredient.isSelected ? currentTheme.colors.mainColor : Color(.white).opacity(0.6))
                             } else {
                                 Image(systemName: ingredient.isChecked ? "largecircle.fill.circle" : "circle")
                                     .padding(.horizontal, 10)
-                                    .foregroundColor(ingredient.isChecked ? currentTheme.colors.mainColor : .primary)
+                                    .foregroundColor(ingredient.isChecked ? currentTheme.colors.mainColor : Color(.white).opacity(0.6))
                             }
                             VStack (alignment: .leading, spacing: 3) {
-                                Text(ingredient.ingredientName ?? "no ingredient Name").strikethrough(color: ingredient.isChecked ? Color.primary : Color.clear)
+                                Text(ingredient.ingredientName ?? "no ingredient Name")
+                                    .foregroundColor(Color.white)
+                                    .strikethrough(color: ingredient.isChecked ? Color.white : Color.clear)
                                     .primaryTextStyle()
                                 
-                                HStack (spacing: 2){
-                                    Text("Quantity: \(ingredient.ingredientQuantity)").secondaryTextStyle()
+                                HStack (spacing: 5){
+                                    Text("Quantity: \(ingredient.ingredientQuantity)")
+                                        .interTextStyle(text: "Inter-Medium", size: 15, color: Color.white.opacity(0.6))
                                     if(ingredient.ingredientMeasurement != "Items"){
-                                        Text(ingredient.ingredientMeasurement ?? "").secondaryTextStyle()
+                                        Text(ingredient.ingredientMeasurement ?? "")
+                                            .interTextStyle(text: "Inter-Medium", size: 15, color: Color.white.opacity(0.6))
                                     }
                                     Text("\(viewing)").opacity(0).font(Font.caption)
                                 }
@@ -71,7 +75,9 @@ struct checkmarkItemView: View {
                            
                             Spacer()
                         }
-                        .background(Color.white.opacity(0.01))})
+                        .background(Color(#colorLiteral(red: 0.03921568627, green: 0.0431372549, blue: 0.04705882353, alpha: 1)).opacity(0.01))
+                        
+                       })
                 
                 Button(action: {
                     withAnimation{
@@ -82,14 +88,15 @@ struct checkmarkItemView: View {
                     Image(systemName: "chevron.down")
                         
                         .frame(width: 30, height: 30)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Color.white.opacity(0.6))
                         .rotation3DEffect(Angle(degrees: showWeights ? 0 : 180), axis: (x: 10.0, y: 0.0, z: 0.0))
                     
                 })
             }
             
-            .padding(.horizontal, 15)
-            .frame(height: 50)
+            .padding( .horizontal, 15)
+            .padding(.vertical, 8)
+
             
             .zIndex(/*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
             
@@ -99,19 +106,18 @@ struct checkmarkItemView: View {
 
                 .keyboardType(.numberPad)
                 .frame(width: 50)
-            
-            
             Picker(selection: $enumIt, label:
                     HStack (spacing: 10){
-                        Text(enumIt.localizedName).foregroundColor(.primary)
+                        Text(enumIt.localizedName)
+                            .interTextStyle(text: "Inter-Medium", size: 15, color: Color.white.opacity(0.6))
                         Image(systemName: "chevron.down").foregroundColor(currentTheme.colors.mainColor)
                     }
+                   
 
-                    .padding(7)
-                    .padding(.horizontal, 5)
-                    
+                    .padding(8)
+                    .background(Color.white.opacity(0.05))
                     .cornerRadius(4)
-                    .overlay(RoundedRectangle(cornerRadius: 4).stroke().foregroundColor(.secondary).opacity(0.5))
+                    .overlay(RoundedRectangle(cornerRadius: 4).stroke().foregroundColor(.white).opacity(0.5))
 
             ) {
                 ForEach(ingredientTypeName.allCases, id: \.id) { value in
@@ -130,33 +136,28 @@ struct checkmarkItemView: View {
                 
             }, label: {
                 Text("Save")
-                    .font(Font.subheadline.bold())
-                    .padding(8)
-                    .padding(.horizontal, 10)
-                    .foregroundColor(.white)
-                    .background(currentTheme.colors.mainColor)
-                    .cornerRadius(4)
+                    .interTextStyle(text: "Inter-ExtraBold", size: 13, color: .white)
+                    .padding(10)
+                    .padding(.horizontal, 8)
             })
+            .buttonStyle(primaryButtonStyle(gradient: currentTheme.colors.gradient))
             Spacer()
             
         }
         .padding(.horizontal, 20)
-        .padding(.vertical, 7)
+        .padding(.vertical, 4)
         .padding(.leading, 45)
         
-        .background(Color.primary.opacity(0.05))
+        .background(Color(#colorLiteral(red: 0.1411764706, green: 0.1647058824, blue: 0.2, alpha: 1)))
         .opacity( showWeights ? 0 : 1)
-        .offset(y: showWeights ? 0 : 50)
+        .offset(y: showWeights ? 0 : 60)
         
         }
 
             
-        }.frame(height: showWeights ? 50 : 100)
-        
-
-       
-
-        
+        }
+//        .frame(height: showWeights ? 60 : 100)
+   
     }
     
     
@@ -203,8 +204,9 @@ struct checkmarkItemView_Previews: PreviewProvider {
         newIngredient.isSelected = true
         newIngredient.ingredientMeasurement = "kilo"
         
-        return checkmarkItemView(shoppingListItem: false, ingredient: newIngredient, buttonAction: {}, popupAction: {}, viewing: viewing)
-            .preferredColorScheme(.dark)
+        return checkmarkItemView(shoppingListItem: true, ingredient: newIngredient, buttonAction: {}, popupAction: {}, viewing: viewing)
+            .preferredColorScheme(.light)
+            .background(radialBackgroundView())
         
     }
     

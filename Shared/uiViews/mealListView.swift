@@ -28,6 +28,7 @@ struct mealListView: View {
     @State var placeholder = "Search Meals"
 
 
+
     var body: some View {
         
         
@@ -50,6 +51,7 @@ struct mealListView: View {
                                 self.selectedMealItem = meal
                                 self.selected.toggle()
                             }
+                            .background(Color.clear)
                         } else{
                             if(meal.wrappedMealName.contains(self.searchtext)){
                                 HStack {
@@ -59,7 +61,7 @@ struct mealListView: View {
                                         .foregroundColor(currentTheme.colors.mainColor)
                                         .padding(20)
                                 }
-                                .background(Color("CardBackground"))
+                                
                                 .onTapGesture {
                                     self.selectedMealItem = meal
                                     self.selected.toggle()
@@ -67,13 +69,19 @@ struct mealListView: View {
                             }
                         }
                     }.onDelete(perform: removeMeal)
+                    .listRowBackground(Color.clear)
                 }
+                
+                
             } else{
                 addMealView(mealObject: selectedMealItem)
             
             }
             
         }
+        .background(radialBackgroundView())
+        .frame(maxWidth: 600)
+        
         
     }
     func removeMeal(at offsets: IndexSet) {
@@ -92,6 +100,7 @@ struct mealListView: View {
     }
 
 }
+
 
 struct mealListView_Previews: PreviewProvider {
     static var viewContext = PersistenceController.preview.container.viewContext
