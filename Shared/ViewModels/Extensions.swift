@@ -75,19 +75,19 @@ struct pageHeader: ViewModifier {
             
             .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.1215686275, green: 0.1490196078, blue: 0.168627451, alpha: 1)), Color(#colorLiteral(red: 0.07058823529, green: 0.1137254902, blue: 0.137254902, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing))
             .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color.white.opacity(0.03)))
-
-            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 2)
     }
 }
 
 
 extension View{
-    func backgroundGradient() -> some View{
+    func backgroundGradient(isTapped: Bool, gradient: LinearGradient) -> some View{
         self
             .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.1215686275, green: 0.1490196078, blue: 0.168627451, alpha: 1)), Color(#colorLiteral(red: 0.07058823529, green: 0.1137254902, blue: 0.137254902, alpha: 1))]), startPoint: .topLeading, endPoint: .bottomTrailing))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 2)
             .cornerRadius(8)
             .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(Color.white.opacity(0.03)))
+            .overlay(RoundedRectangle(cornerRadius: 8, style: .continuous).stroke(gradient, lineWidth: 3).opacity(isTapped ? 1 : 0))
+        
     }
 }
 

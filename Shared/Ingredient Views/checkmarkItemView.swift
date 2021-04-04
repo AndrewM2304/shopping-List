@@ -39,9 +39,9 @@ struct checkmarkItemView: View {
                     .opacity( showWeights ? 0 : 1)
                     .zIndex(2)
                     
-                    .frame(width:4, height:  showWeights ? 0 : 100)
+                    .frame(width:4, height:  showWeights ? 0 : 105)
                     
-            HStack (alignment: .top){
+            HStack (alignment: .center){
                 Button(action: {
                         buttonAction()}
                        , label: {
@@ -94,8 +94,9 @@ struct checkmarkItemView: View {
                 })
             }
             
-            .padding(.horizontal, 15)
-            .frame(height: 50)
+            .padding( .horizontal, 15)
+            .padding(.vertical, 8)
+
             
             .zIndex(/*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
             
@@ -108,11 +109,13 @@ struct checkmarkItemView: View {
             Picker(selection: $enumIt, label:
                     HStack (spacing: 10){
                         Text(enumIt.localizedName)
-                            .interTextStyle(text: "Inter-Medium", size: 15, color: Color.white.opacity(0.15))
+                            .interTextStyle(text: "Inter-Medium", size: 15, color: Color.white.opacity(0.6))
                         Image(systemName: "chevron.down").foregroundColor(currentTheme.colors.mainColor)
                     }
+                   
 
                     .padding(8)
+                    .background(Color.white.opacity(0.05))
                     .cornerRadius(4)
                     .overlay(RoundedRectangle(cornerRadius: 4).stroke().foregroundColor(.white).opacity(0.5))
 
@@ -133,14 +136,16 @@ struct checkmarkItemView: View {
                 
             }, label: {
                 Text("Save")
-                    .padding(.horizontal, 10)
+                    .interTextStyle(text: "Inter-ExtraBold", size: 13, color: .white)
+                    .padding(10)
+                    .padding(.horizontal, 8)
             })
             .buttonStyle(primaryButtonStyle(gradient: currentTheme.colors.gradient))
             Spacer()
             
         }
         .padding(.horizontal, 20)
-        .padding(.vertical, 7)
+        .padding(.vertical, 4)
         .padding(.leading, 45)
         
         .background(Color(#colorLiteral(red: 0.1411764706, green: 0.1647058824, blue: 0.2, alpha: 1)))
@@ -150,7 +155,8 @@ struct checkmarkItemView: View {
         }
 
             
-        }.frame(height: showWeights ? 60 : 100)
+        }
+//        .frame(height: showWeights ? 60 : 100)
    
     }
     

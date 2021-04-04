@@ -35,6 +35,26 @@ struct sectionBreak: View {
 }
 
 
+struct mealCardListItem : View {
+    @State var image: String
+    @State var title : String
+    var body: some View{
+        VStack (alignment: .leading){
+            HStack (spacing: 5){
+               Image(systemName: image)
+                .font(Font.system(size: 13, weight: .bold))
+                .foregroundColor(.white)
+                Text(title.uppercased())
+                    .interTextStyle(text: "Inter-ExtraBold", size: 12, color: .white)
+            }
+            Rectangle()
+                .frame(width: .infinity, height: 1)
+            .foregroundColor(Color.white.opacity(0.4))
+        }
+    }
+}
+
+
 
 struct textfieldSection: View {
     @State var sectionHeader: String

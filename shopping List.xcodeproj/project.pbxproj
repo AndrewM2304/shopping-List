@@ -14,13 +14,15 @@
 		F8025C6225D126700070667D /* ingredientListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8025C6125D126700070667D /* ingredientListView.swift */; };
 		F8025C7F25D1902B0070667D /* selectMealButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8025C7E25D1902B0070667D /* selectMealButtonView.swift */; };
 		F8025C8525D1A9CD0070667D /* addDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8025C8425D1A9CD0070667D /* addDateView.swift */; };
+		F808E601260B222E00042376 /* plannerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808E600260B222E00042376 /* plannerVM.swift */; };
+		F808E602260B222E00042376 /* plannerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808E600260B222E00042376 /* plannerVM.swift */; };
 		F80DA51B25D3FD0E00DAC297 /* ingredientVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80DA51A25D3FD0E00DAC297 /* ingredientVM.swift */; };
 		F81424422605F6A100FC156E /* radialBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81424412605F6A100FC156E /* radialBackgroundView.swift */; };
 		F818A3CB25A239C60084CC90 /* themePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F818A3CA25A239C60084CC90 /* themePicker.swift */; };
 		F83CAE4625A241D5001265D0 /* accountScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83CAE4525A241D5001265D0 /* accountScreenView.swift */; };
 		F840FC5D25A1C9C3003CA8F9 /* mealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F840FC5C25A1C9C3003CA8F9 /* mealCardView.swift */; };
 		F840FC5E25A1C9C3003CA8F9 /* mealCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F840FC5C25A1C9C3003CA8F9 /* mealCardView.swift */; };
-		F840FC6525A1CE13003CA8F9 /* navBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F840FC6425A1CE13003CA8F9 /* navBarView.swift */; };
+		F848559726186C12007CF540 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F848559626186C12007CF540 /* CloudKit.framework */; };
 		F858306126051A6D00697AD0 /* plannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F858306026051A6D00697AD0 /* plannerView.swift */; };
 		F85CF278260A9AA500AEF277 /* leftover.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A11F0D25ACCC470007A71E /* leftover.swift */; };
 		F85CF279260A9AA500AEF277 /* Dates+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8951F1B25D1DDBE0079FDCA /* Dates+CoreDataClass.swift */; };
@@ -34,7 +36,6 @@
 		F85CF28D260A9AE300AEF277 /* radialBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81424412605F6A100FC156E /* radialBackgroundView.swift */; };
 		F85E322225BDCC4B00A48C84 /* mealListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85E322125BDCC4B00A48C84 /* mealListView.swift */; };
 		F85E322C25BF7B6A00A48C84 /* searchBoxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85E322B25BF7B6A00A48C84 /* searchBoxModel.swift */; };
-		F85E323625C076F500A48C84 /* existingMealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85E323525C076F500A48C84 /* existingMealsView.swift */; };
 		F862D24E25D42D7C00289F92 /* Ingredients+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F862D24D25D42D7C00289F92 /* Ingredients+CoreDataProperties.swift */; };
 		F862D25425D42DAC00289F92 /* Ingredients+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F862D25325D42DAC00289F92 /* Ingredients+CoreDataClass.swift */; };
 		F8707DD025ACF7C6003E8345 /* Meal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8707DCA25ACF7C6003E8345 /* Meal+CoreDataClass.swift */; };
@@ -65,11 +66,7 @@
 		F8A5AE20260A9A1200CB2458 /* dateviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AF578C25A51887005994CA /* dateviewModel.swift */; };
 		F8A5AE25260A9A1600CB2458 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87380A125C3F49400E11BA4 /* Extensions.swift */; };
 		F8A5AE26260A9A1600CB2458 /* dismissKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8025C3225CFF69E0070667D /* dismissKeyboard.swift */; };
-		F8A5AE2B260A9A2900CB2458 /* existingMealsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85E323525C076F500A48C84 /* existingMealsView.swift */; };
-		F8A5AE2C260A9A2900CB2458 /* dateSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AF579225A518D5005994CA /* dateSelectorView.swift */; };
 		F8AF578D25A51887005994CA /* dateviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AF578C25A51887005994CA /* dateviewModel.swift */; };
-		F8AF579325A518D5005994CA /* dateSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AF579225A518D5005994CA /* dateSelectorView.swift */; };
-		F8AF579925A51905005994CA /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AF579825A51905005994CA /* DateExt.swift */; };
 		F8CE2C1E25FCB65800272722 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8CE2C1525FCB65800272722 /* Inter-Regular.ttf */; };
 		F8CE2C1F25FCB65800272722 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8CE2C1625FCB65800272722 /* Inter-Black.ttf */; };
 		F8CE2C2025FCB65800272722 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8CE2C1725FCB65800272722 /* Inter-SemiBold.ttf */; };
@@ -121,16 +118,17 @@
 		F8025C6125D126700070667D /* ingredientListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredientListView.swift; sourceTree = "<group>"; };
 		F8025C7E25D1902B0070667D /* selectMealButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectMealButtonView.swift; sourceTree = "<group>"; };
 		F8025C8425D1A9CD0070667D /* addDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addDateView.swift; sourceTree = "<group>"; };
+		F808E600260B222E00042376 /* plannerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plannerVM.swift; sourceTree = "<group>"; };
 		F80DA51A25D3FD0E00DAC297 /* ingredientVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredientVM.swift; sourceTree = "<group>"; };
 		F81424412605F6A100FC156E /* radialBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialBackgroundView.swift; sourceTree = "<group>"; };
 		F818A3CA25A239C60084CC90 /* themePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = themePicker.swift; sourceTree = "<group>"; };
 		F83CAE4525A241D5001265D0 /* accountScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accountScreenView.swift; sourceTree = "<group>"; };
 		F840FC5C25A1C9C3003CA8F9 /* mealCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mealCardView.swift; sourceTree = "<group>"; };
-		F840FC6425A1CE13003CA8F9 /* navBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navBarView.swift; sourceTree = "<group>"; };
+		F848559026186C10007CF540 /* shopping List.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "shopping List.entitlements"; sourceTree = "<group>"; };
+		F848559626186C12007CF540 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		F858306026051A6D00697AD0 /* plannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plannerView.swift; sourceTree = "<group>"; };
 		F85E322125BDCC4B00A48C84 /* mealListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mealListView.swift; sourceTree = "<group>"; };
 		F85E322B25BF7B6A00A48C84 /* searchBoxModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchBoxModel.swift; sourceTree = "<group>"; };
-		F85E323525C076F500A48C84 /* existingMealsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = existingMealsView.swift; sourceTree = "<group>"; };
 		F862D24D25D42D7C00289F92 /* Ingredients+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredients+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F862D25325D42DAC00289F92 /* Ingredients+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ingredients+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F8707DCA25ACF7C6003E8345 /* Meal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Meal+CoreDataClass.swift"; path = "PersistFiles/Meal+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -143,8 +141,6 @@
 		F8951F1C25D1DDBE0079FDCA /* Dates+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dates+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F8A11F0D25ACCC470007A71E /* leftover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leftover.swift; sourceTree = "<group>"; };
 		F8AF578C25A51887005994CA /* dateviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateviewModel.swift; sourceTree = "<group>"; };
-		F8AF579225A518D5005994CA /* dateSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateSelectorView.swift; sourceTree = "<group>"; };
-		F8AF579825A51905005994CA /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 		F8CE2C1525FCB65800272722 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		F8CE2C1625FCB65800272722 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		F8CE2C1725FCB65800272722 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -180,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F848559726186C12007CF540 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +225,7 @@
 				F85E322B25BF7B6A00A48C84 /* searchBoxModel.swift */,
 				F87380A125C3F49400E11BA4 /* Extensions.swift */,
 				F8025C3225CFF69E0070667D /* dismissKeyboard.swift */,
+				F808E600260B222E00042376 /* plannerVM.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -235,16 +233,21 @@
 		F840FC6325A1CE02003CA8F9 /* uiViews */ = {
 			isa = PBXGroup;
 			children = (
-				F8AF579225A518D5005994CA /* dateSelectorView.swift */,
-				F85E323525C076F500A48C84 /* existingMealsView.swift */,
 				F840FC5C25A1C9C3003CA8F9 /* mealCardView.swift */,
 				F85E322125BDCC4B00A48C84 /* mealListView.swift */,
-				F840FC6425A1CE13003CA8F9 /* navBarView.swift */,
 				F878D34E259CB96E00E4595D /* tabBarView.swift */,
 				F8F888F92600980800F9F8F9 /* calendarView.swift */,
 				F81424412605F6A100FC156E /* radialBackgroundView.swift */,
 			);
 			path = uiViews;
+			sourceTree = "<group>";
+		};
+		F848559526186C12007CF540 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F848559626186C12007CF540 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F858305F26051A5E00697AD0 /* Home Screen */ = {
@@ -260,7 +263,6 @@
 		F8AF579E25A5190A005994CA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F8AF579825A51905005994CA /* DateExt.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -294,6 +296,7 @@
 		F8F859D5259CB72C0093A3C8 = {
 			isa = PBXGroup;
 			children = (
+				F848559026186C10007CF540 /* shopping List.entitlements */,
 				F862D24D25D42D7C00289F92 /* Ingredients+CoreDataProperties.swift */,
 				F862D25325D42DAC00289F92 /* Ingredients+CoreDataClass.swift */,
 				F8951F1B25D1DDBE0079FDCA /* Dates+CoreDataClass.swift */,
@@ -307,6 +310,7 @@
 				F8F859F8259CB72D0093A3C8 /* Tests iOS */,
 				F8F85A03259CB72D0093A3C8 /* Tests macOS */,
 				F8F859E6259CB72C0093A3C8 /* Products */,
+				F848559526186C12007CF540 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -544,7 +548,7 @@
 			files = (
 				F8A11F0E25ACCC470007A71E /* leftover.swift in Sources */,
 				F8AF578D25A51887005994CA /* dateviewModel.swift in Sources */,
-				F840FC6525A1CE13003CA8F9 /* navBarView.swift in Sources */,
+				F808E601260B222E00042376 /* plannerVM.swift in Sources */,
 				F8F85A07259CB72D0093A3C8 /* shopping_List.xcdatamodeld in Sources */,
 				F85E322225BDCC4B00A48C84 /* mealListView.swift in Sources */,
 				F88BF69125B810C0008499CD /* checkmarkItemView.swift in Sources */,
@@ -559,12 +563,10 @@
 				F8F85A0D259CB72D0093A3C8 /* Persistence.swift in Sources */,
 				F8F85A09259CB72D0093A3C8 /* shopping_ListApp.swift in Sources */,
 				F8025C8525D1A9CD0070667D /* addDateView.swift in Sources */,
-				F85E323625C076F500A48C84 /* existingMealsView.swift in Sources */,
 				F8025C4625D061DE0070667D /* formElements.swift in Sources */,
 				F85E322C25BF7B6A00A48C84 /* searchBoxModel.swift in Sources */,
 				F8707DD025ACF7C6003E8345 /* Meal+CoreDataClass.swift in Sources */,
 				F878D34F259CB96E00E4595D /* tabBarView.swift in Sources */,
-				F8AF579925A51905005994CA /* DateExt.swift in Sources */,
 				F87F3E5125A100F200031211 /* menuPopupView.swift in Sources */,
 				F8025C3A25D057C80070667D /* addMealVM.swift in Sources */,
 				F8025C3325CFF69E0070667D /* dismissKeyboard.swift in Sources */,
@@ -579,7 +581,6 @@
 				F8025C7F25D1902B0070667D /* selectMealButtonView.swift in Sources */,
 				F87380A225C3F49400E11BA4 /* Extensions.swift in Sources */,
 				F8707DD125ACF7C6003E8345 /* Meal+CoreDataProperties.swift in Sources */,
-				F8AF579325A518D5005994CA /* dateSelectorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,11 +590,9 @@
 			files = (
 				F85CF278260A9AA500AEF277 /* leftover.swift in Sources */,
 				F8A5AE04260A99F300CB2458 /* plannerView.swift in Sources */,
-				F8A5AE2C260A9A2900CB2458 /* dateSelectorView.swift in Sources */,
 				F8A5AE18260A9A0800CB2458 /* formElements.swift in Sources */,
 				F8A5AE1F260A9A1200CB2458 /* keyboardModel.swift in Sources */,
 				F8A5AE20260A9A1200CB2458 /* dateviewModel.swift in Sources */,
-				F8A5AE2B260A9A2900CB2458 /* existingMealsView.swift in Sources */,
 				F8A5AE10260A9A0400CB2458 /* checkmarkItemView.swift in Sources */,
 				F85CF27D260A9AA500AEF277 /* Ingredients+CoreDataProperties.swift in Sources */,
 				F85CF27A260A9AA500AEF277 /* Dates+CoreDataProperties.swift in Sources */,
@@ -606,6 +605,7 @@
 				F8A5AE0F260A9A0400CB2458 /* ingredientVM.swift in Sources */,
 				F85CF28D260A9AE300AEF277 /* radialBackgroundView.swift in Sources */,
 				F85CF288260A9AE000AEF277 /* calendarView.swift in Sources */,
+				F808E602260B222E00042376 /* plannerVM.swift in Sources */,
 				F8A5AE1E260A9A1200CB2458 /* searchBoxModel.swift in Sources */,
 				F840FC5E25A1C9C3003CA8F9 /* mealCardView.swift in Sources */,
 				F85CF27C260A9AA500AEF277 /* Meal+CoreDataProperties.swift in Sources */,
@@ -774,6 +774,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "shopping List.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4CT6S6CSAR;
 				ENABLE_PREVIEWS = YES;
@@ -796,6 +797,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "shopping List.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4CT6S6CSAR;
 				ENABLE_PREVIEWS = YES;

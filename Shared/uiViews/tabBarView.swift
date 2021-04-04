@@ -38,7 +38,7 @@ struct tabBarView: View {
                     Image(systemName: "calendar")
                         
                         .font(.title2)
-                        .foregroundColor(plannerActive ? currentTheme.colors.mainColor : Color.white.opacity(0.5))
+                        .foregroundColor(plannerActive ? currentTheme.colors.accentColor : Color.white.opacity(0.5))
                         
                         .frame(width: geo / 3, height:25)
                         
@@ -46,7 +46,7 @@ struct tabBarView: View {
                 Button(action: {toggleList()}, label: {
                     Image(systemName: "list.bullet")
                         .font(.title2)
-                        .foregroundColor(listActive ? currentTheme.colors.mainColor : Color.white.opacity(0.5))
+                        .foregroundColor(listActive ? currentTheme.colors.accentColor : Color.white.opacity(0.5))
                         .frame(width: geo / 3, height:25)
                     
                 })
@@ -54,7 +54,7 @@ struct tabBarView: View {
                     Image(systemName: "person.circle")
                         .frame(width: 50)
                         .font(.title2)
-                        .foregroundColor(accountActive ? currentTheme.colors.mainColor : Color.white.opacity(0.5))
+                        .foregroundColor(accountActive ? currentTheme.colors.accentColor : Color.white.opacity(0.5))
                         .frame(width: geo / 3, height:25)
                     
                 }

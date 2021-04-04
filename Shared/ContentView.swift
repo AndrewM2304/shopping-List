@@ -17,7 +17,10 @@ struct ContentView: View {
     @State private var accountShow = false
     @State var calendarShow = false
     @State var selectedDate = Date().midnight
+    @State var addMealPopup = false
     @Environment(\.horizontalSizeClass) var sizeClass
+
+    @Environment(\.managedObjectContext) private var viewContext
 
     
     var body: some View {
@@ -37,26 +40,32 @@ struct ContentView: View {
                         calendarViewTwo(selectedDate: $selectedDate)
                             
                                 
-                        plannerView(selectedDate: $selectedDate, calendarShow: $calendarShow)
-                            .frame(width: 400)
+                        plannerView(selectedDate: $selectedDate, calendarShow: $calendarShow, addMealPopup: $addMealPopup)
+                            .frame(minWidth: 400)
+                            .frame(minWidth: 400, idealWidth: geo.size.width * 0.4)
                     } else{
-                    plannerView(selectedDate: $selectedDate, calendarShow: $calendarShow)
+                        plannerView(selectedDate: $selectedDate, calendarShow: $calendarShow, addMealPopup: $addMealPopup)
                         
                     }
                     }
                        
                 } else if (listShow == true){
                     shoppingListView()
-                    
-                    
+                        .environment(\.managedObjectContext, self.viewContext)
+                       
                 } else if (accountShow == true){
                     
                     accountScreenView()
-                    
+                          
                 }
             tabBarView(plannerActive: $planShow, listActive: $listShow, accountActive: $accountShow, geo: geo.size.width)
-                    
+                
+        }    .fullScreenCover(isPresented: $addMealPopup) {
+            menuPopupView().edgesIgnoringSafeArea(.all).environment(\.managedObjectContext, self.viewContext)
+
         }
+        
+
         }.ignoresSafeArea()
         .sheet(isPresented: $calendarShow, content: {
             calendarViewTwo(selectedDate: $selectedDate)
@@ -70,6 +79,8 @@ struct ContentView: View {
             
        
     }
+
+
 }
 
 private let itemFormatter: DateFormatter = {

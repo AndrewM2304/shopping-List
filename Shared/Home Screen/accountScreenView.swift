@@ -53,88 +53,38 @@ struct themeSelectorView: View {
                 Spacer()
             }
             HStack (spacing: 15){
-                Button(action: {changeTheme(to: .green)}, label: {
-                    
-                    if(currentTheme.colors.mainColor == Color("accentGreen")){
-                        Circle()
-                            .fill(Color("accentGreen"))
-                            .frame(width:40, height:40)
-                            .overlay(Circle()
-                                        .stroke(Color.white, lineWidth: 3)
-                                        .frame(width: 38, height: 38))
-                            .overlay(Circle()
-                                        .stroke(Color.primary, lineWidth: 2)
-                                        .frame(width: 40, height: 40))
-                    } else {
-                        Circle()
-                            .frame(width:40, height:40)
-                    }
-                })
-                
-                //orange
-                Button(action: {changeTheme(to: .orange)}, label: {
-                    
-                    if(currentTheme.colors.mainColor == Color("accentOrange")){
-                        Circle()
-                            .fill(Color("accentOrange"))
-                            .frame(width:40, height:40)
-                            .overlay(Circle()
-                                        .stroke(Color.white, lineWidth: 3)
-                                        .frame(width: 38, height: 38))
-                            .overlay(Circle()
-                                        .stroke(Color.primary, lineWidth: 2)
-                                        .frame(width: 40, height: 40))
-                    } else {
-                        Circle()
-                            .fill(Color("accentOrange"))
-                            .frame(width:40, height:40)
-                    }
-                })
-                
-                //pink
-                Button(action: {changeTheme(to: .pink)}, label: {
-                    
-                    if(currentTheme.colors.mainColor == Color("accentPink")){
-                        Circle()
-                            .fill(Color("accentPink"))
-                            .frame(width:40, height:40)
-                            .overlay(Circle()
-                                        .stroke(Color.white, lineWidth: 3)
-                                        .frame(width: 38, height: 38))
-                            .overlay(Circle()
-                                        .stroke(Color.primary, lineWidth: 2)
-                                        .frame(width: 40, height: 40))
-                    } else {
-                        Circle()
-                            .fill(Color("accentPink"))
-                            .frame(width:40, height:40)
-                    }
-                })
-                
-                
-                //pink
-                Button(action: {changeTheme(to: .purple)}, label: {
-                    
-                    if(currentTheme.colors.mainColor == Color("accentPurple")){
-                        Circle()
-                            .fill(Color("accentPurple"))
-                            .frame(width:40, height:40)
-                            .overlay(Circle()
-                                        .stroke(Color.white, lineWidth: 3)
-                                        .frame(width: 38, height: 38))
-                            .overlay(Circle()
-                                        .stroke(Color.primary, lineWidth: 2)
-                                        .frame(width: 40, height: 40))
-                    } else {
-                        Circle()
-                            .fill(Color("accentPurple"))
-                            .frame(width:40, height:40)
-                    }
-                })
-                
-            }
+
+                ThemePickerButton(color: .green)
+            ThemePickerButton(color: .orange)
+            ThemePickerButton(color: .blue)
+                ThemePickerButton(color: .purple)
         }
+    }
+            
         
+        
+    }
+
+}
+
+struct ThemePickerButton: View {
+    @AppStorage("theme") var currentTheme: colorTheme = .green
+    var color: colorTheme
+    var body: some View {
+        Button(action: {changeTheme(to: color)}, label: {
+            
+
+                Circle()
+                    .fill(color.colors.accentColor)
+                    .frame(width:40, height:40)
+
+                    .overlay(Circle()
+                                .stroke(Color.white.opacity((currentTheme == color) ? 0.9 : 0), lineWidth: 2)
+                                .frame(width: 40, height: 40)
+                                
+                    )
+                    
+        })
     }
     func changeTheme(to theme: colorTheme){
         currentTheme = theme

@@ -12,7 +12,7 @@ import Foundation
 struct calendarViewTwo: View {
     @Environment(\.calendar) var calendar
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     
     private var year: DateInterval {
         calendar.dateInterval(of: .year, for: Date())!
@@ -25,9 +25,9 @@ struct calendarViewTwo: View {
     var body: some View {
         VStack(spacing: 0){
             if sizeClass == .compact {
-            Capsule().foregroundColor(Color.white.opacity(0.3))
-                .frame(width: 58, height:6)
-                .padding()
+                Capsule().foregroundColor(Color.white.opacity(0.3))
+                    .frame(width: 58, height:6)
+                    .padding()
             }
             
             GeometryReader { geometry in
@@ -40,18 +40,18 @@ struct calendarViewTwo: View {
                         
                     }, label: {
                         dayView(selectedDate: $selectedDate, geo: geometry, date: date)
-                            
+                        
                     })
                     
                     
                 }
             }
-       
-
-                .padding(10)
+            
+            
+            .padding(10)
         }.background(Color(#colorLiteral(red: 0.08235294118, green: 0.09411764706, blue: 0.1019607843, alpha: 1)))
         .edgesIgnoringSafeArea(.vertical)
-
+        
     }
     
 }
@@ -70,7 +70,6 @@ struct CalendarView<DateView>: View where DateView: View {
     
     let interval: DateInterval
     let content: (Date) -> DateView
-    @State var selection = 8
     
     init(
         interval: DateInterval,
@@ -78,8 +77,6 @@ struct CalendarView<DateView>: View where DateView: View {
     ) {
         self.interval = interval
         self.content = content
-        let newDate = thisDate.string(from: Date())
-        self.selection = (Int(newDate) ?? 1) - 1
         
     }
     
@@ -104,36 +101,44 @@ struct CalendarView<DateView>: View where DateView: View {
     
     var body: some View {
         ScrollView (.vertical){
+            ScrollViewReader { value in
+                
                 LazyVStack(spacing: 10, pinnedViews: [.sectionHeaders]) {
-                ForEach(months, id: \.self) { month in
-                    
-                    Section(header: headerView(month: month)){
-
-                    MonthView(month: month, content: self.content)
-                        .background(radialBackgroundView())
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .padding(.bottom, 30)
+                    ForEach(months, id: \.self) { month in
+                        
+                        
+                        VStack (spacing: 0){
+                            HStack {
+                                Text(monthFormatter.string(from: month))
+                                    .interTextStyle(text: "Inter-ExtraBold", size: 15, color: Color.white)
+                                Spacer()
+                            }
+                            .padding(.vertical)
+                            
+                            
+                            
+                        }
+                        MonthView(month: month, content: self.content)
+                            .id(Int(thisDate.string(from: month)))
+                            .background(radialBackgroundView())
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .padding(.bottom, 30)
+                        
+                        
+                    }
                 }
+                .onAppear{
+                    
+                    value.scrollTo(Int(thisDate.string(from: Date())), anchor: UnitPoint(x: 0.5, y: 0.3))
+                    
                 }
             }
-  
+            
         }
-  
+        
+        
     }
     
-    private func headerView(month: Date) -> some View {
-        VStack (spacing: 0){
-            HStack {
-                Text(monthFormatter.string(from: month))
-                    .interTextStyle(text: "Inter-ExtraBold", size: 15, color: Color.white)
-                Spacer()
-            }
-            .padding(.vertical)
-            
-           
-        }.background(Color(#colorLiteral(red: 0.08235294118, green: 0.09411764706, blue: 0.1019607843, alpha: 1)))
-            
-    }
 }
 
 
@@ -163,15 +168,16 @@ struct MonthView<DateView>: View where DateView: View {
     }
     
     var body: some View {
-
+        
+        
+        LazyVStack (spacing:0){
+            ForEach(weeks, id: \.self) { week in
+                WeekView(week: week, content: self.content)
+                
+                Divider().background(Color.white.opacity(0.2))
+                
+            }
             
-            LazyVStack (spacing:0){
-                ForEach(weeks, id: \.self) { week in
-                    WeekView(week: week, content: self.content)
-                    Divider().background(Color.white.opacity(0.2))
-                    
-                }
-  
         }
         
     }
@@ -213,12 +219,13 @@ struct WeekView<DateView>: View where DateView: View {
                         self.content(date).opacity(0.5)
                         
                     }
-                   
+                    
                 }
-               
+                
             }
-          
+            
         }
+        
     }
 }
 
@@ -258,6 +265,15 @@ struct dayView: View{
     @AppStorage("theme") var currentTheme: colorTheme = .green
     @Binding var selectedDate: Date
     var geo : GeometryProxy
+    @FetchRequest(entity: Dates.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Dates.date, ascending: true)],
+                  animation: .default)
+    private var listDates: FetchedResults<Dates>
+    
+    @FetchRequest(entity: Meal.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Meal.mealName, ascending: true)],
+                  animation: .default)
+    private var listMeal: FetchedResults<Meal>
     
     private var year: DateInterval {
         calendar.dateInterval(of: .year, for: Date())!
@@ -274,19 +290,23 @@ struct dayView: View{
                         .hidden()
                     Spacer()
                 }
-
+                
                 HStack (alignment: .bottom, spacing: 4){
                     Image("fork 2")
                         .resizable()
                         
-                        .frame(width: 8, height: 15)
-                    Text(" x3")
+                        .frame(width: 7, height: 12)
+                    Text(" x\(countDays2(dates: date))")
                         .interTextStyle(text: "Inter-SemiBold", size: 10, color: currentTheme.colors.accentColor)
+                        .layoutPriority(0)
+                    
                     Spacer()
                 }.foregroundColor(currentTheme.colors.accentColor)
-                .padding(8)
-               
-            } .padding(8)
+                .opacity(countDays2(dates: date) > 0 ? 1 : 0)
+                
+                
+            } .padding(.leading, 8)
+            .padding(.vertical, 8)
             
             
             Text(String(self.calendar.component(.day, from: date)))
@@ -297,13 +317,7 @@ struct dayView: View{
                                 .foregroundColor(currentTheme.colors.accentColor)
                                 .opacity( self.calendar.isDate(self.date, equalTo: today, toGranularity: .day) ? 1 : 0))
         }
-        .frame(width: geo.size.width / 7)
-      
-        
-        
-        
-        
-        
+        .frame(width: geo.size.width / 7.5, height: 80)
         
         .overlay(
             Group{
@@ -317,5 +331,39 @@ struct dayView: View{
                 }
             }
         )
+        
     }
+    func countDays(date: Date) -> Int{
+        var x = 0
+        for dates in listDates{
+            
+            if dates.date == date{
+                let mealArray = [dates.meal]
+                x = mealArray.count
+            }
+            //            if dates. == selectedDate{
+            //            let y =  [dates.meal]
+            //            x = y.count
+            //            }
+            //           let y =  [meal.dateArray.contains(where: {$0.date == selectedDate})]
+            
+        }
+        return x
+    }
+    
+    
+    func countDays2(dates: Date) -> Int{
+        var x = 0
+        for meal in listMeal{
+            
+            if( meal.dateArray.contains(where: {$0.date == dates})){
+                x += 1
+            }
+            
+        }
+        
+        return x
+    }
+    
+    
 }

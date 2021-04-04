@@ -27,7 +27,7 @@ struct shoppingListView: View {
         
         ZStack (alignment: .top){
             radialBackgroundView()
-            VStack{
+            VStack (spacing: 0){
                 
                 
                 HStack{
@@ -59,7 +59,7 @@ struct shoppingListView: View {
                 
                 .frame(maxWidth: 600)
                    
-                    
+               Spacer()
             }
                 .padding(.top, UIDevice.current.hasNotch ? 40 : 20)
                 .padding( 10)
@@ -77,6 +77,7 @@ struct shoppingListView: View {
                            
                         }
                         .listRowInsets(EdgeInsets())
+                        Divider()
                     }
                 }.dismissKeyboardOnTap()
             }

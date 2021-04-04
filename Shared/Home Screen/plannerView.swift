@@ -11,15 +11,16 @@ import SwiftUI
 struct plannerView: View {
     @AppStorage("theme") var currentTheme: colorTheme = .green
     @Environment(\.managedObjectContext) private var viewContext
-    @State var addMealPopup = false
-    
+    @Environment(\.horizontalSizeClass) var sizeClass
+   
+
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         return formatter
     }
     
-    @Environment(\.horizontalSizeClass) var sizeClass
+    
     
     
     @FetchRequest(entity: Meal.entity(),
@@ -31,7 +32,7 @@ struct plannerView: View {
     @Binding var selectedDate: Date
     @State var time = Date().midnight
     @Binding var calendarShow: Bool
-    
+    @Binding var addMealPopup: Bool
     
     var body: some View {
         ScrollView (showsIndicators: false){
@@ -56,21 +57,22 @@ struct plannerView: View {
                             Image(systemName: "chevron.down").foregroundColor(currentTheme.colors.mainColor)
                         }
                         .padding(8)
-                        .backgroundGradient()
+                        .backgroundGradient(isTapped: false, gradient: currentTheme.colors.gradient)
                     })
                     }
                 }.padding(20)
                 
+
                 
                 ForEach(listmeal){ mealItem in
-                    
+
                     if(mealItem.dateArray.contains(where: {$0.date == selectedDate})){
-                        
+
                         mealCardView(mealItem: mealItem,selectedDate: $selectedDate)
-                            
-                            
+
+
                             .buttonStyle(popButtonStyle())
-                        
+
                     }
                 }
                 Spacer()
@@ -81,13 +83,13 @@ struct plannerView: View {
                         .interTextStyle(text: "Inter-ExtraBold", size: 17, color: Color.white)
                         .frame(maxWidth: .infinity)
                         .padding(15)
-                })
+                })                
                 
                 .buttonStyle(primaryButtonStyle(gradient: currentTheme.colors.gradient))
                 
                 .padding(.bottom, 20)
                 .padding(20)
-                
+
                 
                 
             }
@@ -97,9 +99,10 @@ struct plannerView: View {
             
                 
         }
-        .sheet(isPresented: $calendarShow, content: {
-            calendarViewTwo(selectedDate: $selectedDate)
-        })
+        
+//        .sheet(isPresented: $calendarShow, content: {
+//            calendarViewTwo(selectedDate: $selectedDate)
+//        })
 
         
         
@@ -110,13 +113,10 @@ struct plannerView: View {
         
         
         
-        .fullScreenCover(isPresented: $addMealPopup) {
-            menuPopupView().edgesIgnoringSafeArea(.all).environment(\.managedObjectContext, self.viewContext)
-            
-        }
+       
         .edgesIgnoringSafeArea(.vertical)
     }
-    
+
     
     
 }
@@ -124,8 +124,10 @@ struct plannerView: View {
 
 struct plannerView_Previews: PreviewProvider {
     @State static var calendarShow = false
+    @State static var mealPopup = false
     @State static var selectedDate = Date().midnight
+
     static var previews: some View {
-        plannerView(selectedDate: $selectedDate, calendarShow: $calendarShow)
+        plannerView(selectedDate: $selectedDate, calendarShow: $calendarShow, addMealPopup: $mealPopup)
     }
 }
