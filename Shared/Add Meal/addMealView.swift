@@ -15,21 +15,22 @@ struct addMealView: View {
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @AppStorage("theme") var currentTheme: colorTheme = .green
-
+     @AppStorage("theme", store: UserDefaults(suiteName: "group.Andrew-Miller.shoppingList")) var currentTheme: colorTheme = .green
+    
     @State var UpdateUI = 0
     @State var showKeyboard = true
     @State var addMealCount = 0
-@State var showOverlay = false
+    @State var showOverlay = false
     @State var mealNameText = ""
     @State var mealLinkText = ""
     @State var mealNotesText = ""
     @State var ingredientName = ""
     @State var dateArray = [Dates]()
     @State var ingredientArray = [Ingredients]()
+    @State var offset = 0
     
     init(mealObject: Meal? = nil){
-
+        
         addMealObject.mealObject = mealObject
         addMealObject.mealName = mealObject?.mealName ?? mealNameText
         addMealObject.mealUrl = mealObject?.mealLink ?? mealLinkText
@@ -37,81 +38,108 @@ struct addMealView: View {
         addMealObject.ingredientList = mealObject?.ingredientArray ?? [Ingredients]()
         addMealObject.dateList = mealObject?.dateArray ?? [Dates]()
         
-//        addIngredientObject.ingredientObject = ingredientObject
-//        addIngredientObject.ingredientName = ingredientObject?.ingredientName ?? ""
-//        addIngredientObject.ingredientQuantity = ingredientObject?.ingredientQuantity ?? 1
-//        addIngredientObject.enumSwitch = ingredientObject?.ingredientTypeNameStatus ?? .items
-//        addIngredientObject.selectedIngredient = Ingredients(context: managedObjectContext) 
-    
     }
     
     
     var body: some View {
         ScrollView {
-                    VStack (spacing: 0){
-                    VStack(alignment: .leading, spacing: 0){
-                        VStack (alignment: .leading, spacing: 5){
-                            textfieldSection(sectionHeader: "Meal Name", textField: $mealNameText, keyboardType: .default, gradient: currentTheme.colors.gradient)
-                            textfieldSection(sectionHeader: "Link to Recipe", textField: $mealLinkText, keyboardType: .URL, gradient: currentTheme.colors.gradient)
-                            textfieldSection(sectionHeader: "Notes about meal", textField: $mealNotesText, keyboardType: .default, multiLine: true, gradient: currentTheme.colors.gradient)
-                            addDateView(addDate: addMealObject)
-                        }
-                        .padding()
-                        
-                        
-                        sectionBreak(viewing: UpdateUI, mainText: "Ingredients", secondaryText: "something here")
-                        ingredientListView(arrayName: $addMealObject.ingredientList, shoppingListItem: false, viewing: $UpdateUI, selectedIngredient: $addIngredientObject.selectedIngredient, showOverlay: $showOverlay)
-                    }
-                    .padding(.bottom, 10)
-
-    
-                    ingredientInput(textField: $ingredientName,buttonAction:{addItem()}, keyboardReturn:{
-                        addItem()
-                        self.showKeyboard = false
-                        
-                    }, onTap: {self.showKeyboard = true})
-                    .padding(.horizontal, 15)
-                    }
-                    
-                    .offset(y: showKeyboard ? -(keyboard.currentHeight - 40) : 0)
-                    
-                    .alert(isPresented: $addMealObject.showAlert,
-                           content: { Alert(title: Text("error"), message: Text(addMealObject.alertMsg), dismissButton: .default(Text("OK"))) })
             
             
-            Button(action: {addMealObject.saveMeal(managedObjectContext: viewContext, myMealName: mealNameText);self.presentationMode.wrappedValue.dismiss()}, label: {
-            Text("save")
-                .interTextStyle(text: "Inter-ExtraBold", size: 17, color: Color.white)
-                .frame(maxWidth: .infinity)
-                .padding(15)
-        })
-            .buttonStyle(primaryButtonStyle(gradient: currentTheme.colors.gradient)).padding()
-            .padding(.bottom, 30)
-                }.frame(maxWidth: 600)
-        
-        .background(radialBackgroundView())
-                .onAppear{
-                    self.showKeyboard = false
-                    self.mealNameText = addMealObject.mealName
-                    self.mealNotesText = addMealObject.mealNotes
-                    self.mealLinkText = addMealObject.mealUrl
-                }
-                .dismissKeyboardOnTap()
-        
-               
-                .animation(.default)
+            
+            
                 
-            }
+                    VStack (alignment: .leading, spacing: 30){
+                        textfieldSection(sectionHeader: "Meal Name", textField: $mealNameText, keyboardType: .default, color: currentTheme.colors.accentColor, keyboardReturn: {})
+                        
+                        textfieldSection(sectionHeader: "Link to Recipe", textField: $mealLinkText, keyboardType: .URL, color: currentTheme.colors.accentColor, keyboardReturn: {})
+                        textfieldSection(sectionHeader: "Notes about meal", textField: $mealNotesText, keyboardType: .default, multiLine: true, color: currentTheme.colors.accentColor, keyboardReturn: {})
+                        
+                    }
+                    .padding()
+                    .padding(.bottom, 40)
+            VStack (spacing: 0){
+                    sectionBreak(viewing: UpdateUI, mainText: "Select Dates", secondaryText: "Select when to have your meal", multiText: true)
+                    addDateView(addDate: addMealObject)
+                        
+                        .padding()
+                        .padding(.bottom, 40)
+                    
+           
+                    sectionBreak(viewing: UpdateUI, mainText: "Ingredients", secondaryText: "Selected ingredients will be added to your Shopping List", multiText: true)
+                    ingredientListView(arrayName: $addMealObject.ingredientList, shoppingListItem: false, viewing: $UpdateUI, selectedIngredient: $addIngredientObject.selectedIngredient, showOverlay: $showOverlay)
+                    
+                    
+                HStack {
+                    searchInputBox(textField: $ingredientName, search: false, label: "Add Ingredient", keyboardReturn: {
+                        withAnimation{
+                            self.showKeyboard = false
+                            self.offset = 0
+                        }
+                        addItem()
+                    }).onTapGesture {
+                        withAnimation {
+                            self.showKeyboard = true
+                        }
+                    }
+                    Button(action: {
+                        withAnimation{
+                            addItem()
+                            self.offset += 1
+                        }
+                    }, label: {
+                        Image(systemName: "plus.circle.fill")
+                            .foregroundColor(currentTheme.colors.accentColor)
+                            .padding(.vertical, 10)
+                            .padding(.leading, 20)
+                    })
+
+                }
+                
+                .padding( 15)
+            .alert(isPresented: $addMealObject.showAlert,
+                   content: { Alert(title: Text("error"), message: Text(addMealObject.alertMsg), dismissButton: .default(Text("OK"))) })
+            
+            
+            Button(action: {addMealObject.saveMeal(managedObjectContext: viewContext, myMealName: mealNameText, myMealLink: mealLinkText, myMealNotes: mealNotesText);
+                    self.presentationMode.wrappedValue.dismiss()}, label: {
+                        Text("save")
+                            .interTextStyle(text: "Inter-ExtraBold", size: 17, color: Color.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(15)
+                    })
+                
+                
+                .buttonStyle(primaryButtonStyle(gradient: currentTheme.colors.gradient)).padding()
+                .padding(.bottom, 50)
+            }.opacity(mealNameText == "" ? 0 : 1)
+        }.frame(maxWidth: 600)
+        .offset(y: showKeyboard ?  -(keyboard.currentHeight - 130 + (CGFloat(offset) * 68)) : 0)
+        .background(radialBackgroundView())
+
+        .onAppear{
+            self.showKeyboard = false
+            self.mealNameText = addMealObject.mealName
+            self.mealNotesText = addMealObject.mealNotes
+            self.mealLinkText = addMealObject.mealUrl
+            addMealObject.checkAndSelect(meal: addMealObject.mealObject)
+        }
+        .dismissKeyboardOnTap()
+        
+        
+        .animation(.default)
+        
+        
+    }
     
     
     
     func addItem() {
         withAnimation{
-        self.addMealObject.addIngredients( managedObjectContext: self.viewContext, myIngredientName: self.ingredientName, myarray: self.addMealObject.ingredientList)
-                        self.ingredientName = ""
+            self.addMealObject.addIngredients( managedObjectContext: self.viewContext, myIngredientName: self.ingredientName, myarray: self.addMealObject.ingredientList)
+            self.ingredientName = ""
         }
         
-
+        
     }
 }
 

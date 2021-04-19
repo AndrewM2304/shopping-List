@@ -24,7 +24,7 @@ extension Meal {
     @NSManaged public var myIngredientList: NSSet?
     
     
-    
+  
    
 
     public var ingredientArray : [Ingredients]{
@@ -34,11 +34,17 @@ extension Meal {
         }
     }
     
+//    public var dateArray : [Dates]{
+//        let set = meal as? Set<Dates>  ?? []
+//        return set.sorted {
+//            $0.mealTypeNameStatus.sortOrder < $1.mealTypeNameStatus.sortOrder
+//        }
+//    }
     
     public var dateArray : [Dates]{
         let set = meal as? Set<Dates>  ?? []
         return set.sorted {
-            $0.mealType! < $1.mealType!
+            $0.mealTypeNameStatus.sortOrder  < $1.mealTypeNameStatus.sortOrder
         }
     }
     
@@ -53,17 +59,8 @@ extension Meal {
     public var wrappedMealNotes: String{
         mealNotes ?? ""
     }
-    
-    
-
-    
-    
+      
 }
-
-
-
-
-
 
 
 // MARK: Generated accessors for meal
@@ -101,6 +98,14 @@ extension Meal {
 }
 
 extension Meal : Identifiable {
+
+}
+
+extension Meal: Comparable{
+    public static func < (lhs: Meal, rhs: Meal) -> Bool {
+        return   lhs.dateArray[0].mealTypeNameStatus.sortOrder < rhs.dateArray[0].mealTypeNameStatus.sortOrder
+    }
+    
 
 }
 

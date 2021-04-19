@@ -12,12 +12,15 @@ struct shoppingListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var hidekeyboard = true
     @State var ingredient = ""
-    @AppStorage("theme") var currentTheme: colorTheme = .green
+    @AppStorage("theme", store: UserDefaults(suiteName: "group.Andrew-Miller.shoppingList")) var currentTheme: colorTheme = .green
     @State var viewing = 0
-
+    
+    
     
     @FetchRequest(
+        entity: Ingredients.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \Ingredients.ingredientName, ascending: true)],
+        predicate: NSPredicate(format: "isSelected == YES"),
         animation: .default)
     
     private var listingredients: FetchedResults<Ingredients>
@@ -40,9 +43,10 @@ struct shoppingListView: View {
                     menuItems
             }
                     HStack {
-                        TextField("Add Ingredient", text: $ingredient, onCommit: addIngredients)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-
+                        
+                        searchInputBox(textField: $ingredient, search: false, label: "Add Ingredient", keyboardReturn: {
+                            withAnimation{
+                                addIngredients()}})
                         Button(action: {
                             withAnimation{
                                 addIngredients()
@@ -50,7 +54,7 @@ struct shoppingListView: View {
                             }
                         }, label: {
                             Image(systemName: "plus.circle.fill")
-                                .foregroundColor(currentTheme.colors.mainColor)
+                                .foregroundColor(currentTheme.colors.accentColor)
                                 .padding(.vertical, 10)
                                 .padding(.leading, 20)
                         })
@@ -71,24 +75,25 @@ struct shoppingListView: View {
             VStack (spacing: 0){
                 ForEach(listingredients){ ingredient in
                     
-                    if(ingredient.isSelected == true){
+                    
                         HStack(alignment: .top){
                             checkmarkItemView(shoppingListItem: true, ingredient: ingredient, buttonAction: {checkItem(ingredient: ingredient)}, popupAction: {save()}, viewing: viewing)
-                           
+                                .dismissKeyboardOnTap()
                         }
-                        .listRowInsets(EdgeInsets())
-                        Divider()
-                    }
+                        
+                    Divider().background(Color.white.opacity(0.2)).padding(2)
+                    
                 }.dismissKeyboardOnTap()
-            }
+            }.padding(.horizontal, 10)
 
 
         }
             .frame(maxWidth: 600)
-            
-        }.dismissKeyboardOnTap()
+            .dismissKeyboardOnTap()
+        }
         }
         .edgesIgnoringSafeArea(.bottom)
+        .dismissKeyboardOnTap()
     }
     
     
@@ -96,12 +101,20 @@ struct shoppingListView: View {
 
             Menu{
                
-                Text("Menu Item 2")
-                Text("Menu Item 3")
-                Divider()
-                Button(action: {deleteAll()}, label: {
-                    Text("Delete All Items").foregroundColor(.red).accentColor(.green)
+                Button(action: {completeAll()}, label: {
+                    HStack{
+                        Image(systemName: "checkmark.circle")
+                    Text("Complete all Items")
+                    }
                 })
+                Divider()
+                Button(action: {deleteChecked()}, label: {
+                    HStack{
+                        Image(systemName: "trash")
+                    Text("Delete Completed")
+                }
+                })
+                
             }
             label: {
                 Image(systemName: "ellipsis.circle").foregroundColor(.white)
@@ -121,6 +134,7 @@ struct shoppingListView: View {
                 newIngredient.isSelected = true
                 newIngredient.ingredientQuantity = 1
                 newIngredient.ingredientTypeNameStatus = .items
+                newIngredient.ingredientMeasurement = "Items"
                 do {
                     
                     try viewContext.save()
@@ -146,8 +160,26 @@ struct shoppingListView: View {
         }
     }
     
-    func deleteAll(){
+    func completeAll(){
         for ingredientFunction in listingredients {
+            ingredientFunction.isChecked = true
+            do {
+                
+                try viewContext.save()
+                
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                print(nsError)
+            }
+        }
+    }
+    
+    func deleteChecked(){
+        for ingredientFunction in listingredients {
+            
+            if(ingredientFunction.isChecked){
             ingredientFunction.isSelected = false
             do {
                 
@@ -158,6 +190,7 @@ struct shoppingListView: View {
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
             }
         }
     }

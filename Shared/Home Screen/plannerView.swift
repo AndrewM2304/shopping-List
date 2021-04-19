@@ -9,35 +9,27 @@ import SwiftUI
 
 
 struct plannerView: View {
-    @AppStorage("theme") var currentTheme: colorTheme = .green
+    @AppStorage("theme", store: UserDefaults(suiteName: "group.Andrew-Miller.shoppingList")) var currentTheme: colorTheme = .green
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.horizontalSizeClass) var sizeClass
-   
+    @ObservedObject var plannerVm : plannerVM
+    @State var filter = NSPredicate()
 
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         return formatter
     }
-    
-    
-    
-    
-    @FetchRequest(entity: Meal.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Meal.mealName, ascending: true)],
-                  animation: .default)
-    private var listmeal: FetchedResults<Meal>
-
+ 
     
     @Binding var selectedDate: Date
-    @State var time = Date().midnight
     @Binding var calendarShow: Bool
     @Binding var addMealPopup: Bool
+    @State var showingAlert = false
+    @State var deletedMeal : Meal?
     
     var body: some View {
         ScrollView (showsIndicators: false){
-            
-            
             VStack (alignment:.leading){
                 VStack (alignment:.leading){
                     Text("Meals")
@@ -57,24 +49,14 @@ struct plannerView: View {
                             Image(systemName: "chevron.down").foregroundColor(currentTheme.colors.mainColor)
                         }
                         .padding(8)
-                        .backgroundGradient(isTapped: false, gradient: currentTheme.colors.gradient)
+                        .backgroundGradient(isTapped: false, gradient: currentTheme.colors.gradient, color: currentTheme.colors.accentColor.opacity(0.1))
                     })
                     }
                 }.padding(20)
                 
-
+                filteredMealsView(selectedDate: selectedDate, addMealPopup: $addMealPopup, planVM: plannerVm, deletedMeal: deletedMeal, showingAlert: $showingAlert)
                 
-                ForEach(listmeal){ mealItem in
-
-                    if(mealItem.dateArray.contains(where: {$0.date == selectedDate})){
-
-                        mealCardView(mealItem: mealItem,selectedDate: $selectedDate)
-
-
-                            .buttonStyle(popButtonStyle())
-
-                    }
-                }
+                
                 Spacer()
                 
                 
@@ -88,36 +70,16 @@ struct plannerView: View {
                 .buttonStyle(primaryButtonStyle(gradient: currentTheme.colors.gradient))
                 
                 .padding(.bottom, 20)
-                .padding(20)
-
-                
-                
+                .padding(20)  
             }
             .padding(.top, UIDevice.current.hasNotch ? 40 : 20)
-            
-          
-            
-                
         }
-        
-//        .sheet(isPresented: $calendarShow, content: {
-//            calendarViewTwo(selectedDate: $selectedDate)
-//        })
-
-        
-        
         .background(radialBackgroundView())
-        
-        
-        
-        
-        
-        
-       
-        .edgesIgnoringSafeArea(.vertical)
+        .edgesIgnoringSafeArea(.top)
+        .onAppear{
+            plannerVm.selectedMeal = nil
+        }
     }
-
-    
     
 }
 
@@ -126,8 +88,9 @@ struct plannerView_Previews: PreviewProvider {
     @State static var calendarShow = false
     @State static var mealPopup = false
     @State static var selectedDate = Date().midnight
-
+    
+  
     static var previews: some View {
-        plannerView(selectedDate: $selectedDate, calendarShow: $calendarShow, addMealPopup: $mealPopup)
+        plannerView(plannerVm: plannerVM(), selectedDate: $selectedDate, calendarShow: $calendarShow,  addMealPopup: $mealPopup).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
