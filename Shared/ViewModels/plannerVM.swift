@@ -60,43 +60,54 @@ import Foundation
 
 
 class plannerVM: NSObject, ObservableObject {
-  @Published var dueSoon: [Meal] = []
-  private let dueSoonController: NSFetchedResultsController<Meal>
-
-  init(managedObjectContext: NSManagedObjectContext) {
-    dueSoonController = NSFetchedResultsController(fetchRequest: Meal.dueSoonFetchRequest,
-    managedObjectContext: managedObjectContext,
-    sectionNameKeyPath: nil, cacheName: nil)
-
-    super.init()
-
-    dueSoonController.delegate = self
-
-    do {
-      try dueSoonController.performFetch()
-      dueSoon = dueSoonController.fetchedObjects ?? []
-    } catch {
-      print("failed to fetch items!")
-    }
-  }
+    @Published var selectedMeal : Meal?
 }
-
-extension plannerVM: NSFetchedResultsControllerDelegate {
-  func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-    guard let meaalItems = controller.fetchedObjects as? [Meal]
-      else { return }
-
-    dueSoon = meaalItems
-  }
-}
-
-
-extension Meal {
-  static var dueSoonFetchRequest: NSFetchRequest<Meal> {
-    let request: NSFetchRequest<Meal> = Meal.fetchRequest()
-    request.predicate = NSPredicate(format: "dueDate < %@", Date() as CVarArg)
-    request.sortDescriptors = [NSSortDescriptor(key: "dueDate", ascending: true)]
-
-    return request
-  }
-}
+//  @Published var dueSoon: [Meal] = []
+//  private let dueSoonController: NSFetchedResultsController<Meal>
+//
+//
+//
+//
+//  init(managedObjectContext: NSManagedObjectContext) {
+//    dueSoonController = NSFetchedResultsController(fetchRequest: Meal.dueSoonFetchRequest,
+//    managedObjectContext: managedObjectContext,
+//    sectionNameKeyPath: nil, cacheName: nil)
+//
+//    super.init()
+//
+//    dueSoonController.delegate = self
+//
+//    do {
+//      try dueSoonController.performFetch()
+//      dueSoon = dueSoonController.fetchedObjects ?? []
+//    } catch {
+//      print("failed to fetch items!")
+//    }
+//  }
+//
+//
+//
+//
+//
+//
+//}
+//
+//extension plannerVM: NSFetchedResultsControllerDelegate {
+//  func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//    guard let meaalItems = controller.fetchedObjects as? [Meal]
+//      else { return }
+//
+//    dueSoon = meaalItems
+//  }
+//}
+//
+//
+//extension Meal {
+//  static var dueSoonFetchRequest: NSFetchRequest<Meal> {
+//    let request: NSFetchRequest<Meal> = Meal.fetchRequest()
+//    request.predicate = NSPredicate(format: "dueDate < %@", Date() as CVarArg)
+//    request.sortDescriptors = [NSSortDescriptor(key: "dueDate", ascending: true)]
+//
+//    return request
+//  }
+//}

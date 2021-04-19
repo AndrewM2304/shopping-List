@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Dates" representedClassName="Dates" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="mealType" attributeType="String" defaultValueString="breakfast"/>
+        <attribute name="sortedOrder" attributeType="String" defaultValueString="a"/>
         <relationship name="meal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Meal" inverseName="meal" inverseEntity="Meal"/>
     </entity>
     <entity name="Ingredients" representedClassName="Ingredients" syncable="YES">
@@ -19,11 +20,11 @@
         <attribute name="mealLink" optional="YES" attributeType="String"/>
         <attribute name="mealName" attributeType="String" defaultValueString=""/>
         <attribute name="mealNotes" optional="YES" attributeType="String"/>
-        <relationship name="meal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Dates" inverseName="meal" inverseEntity="Dates"/>
-        <relationship name="myIngredientList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredients" inverseName="mealIngredientList" inverseEntity="Ingredients"/>
+        <relationship name="meal" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Dates" inverseName="meal" inverseEntity="Dates"/>
+        <relationship name="myIngredientList" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Ingredients" inverseName="mealIngredientList" inverseEntity="Ingredients"/>
     </entity>
     <elements>
-        <element name="Dates" positionX="282.5498046875" positionY="37.43975830078125" width="128" height="74"/>
+        <element name="Dates" positionX="282.5498046875" positionY="37.43975830078125" width="128" height="89"/>
         <element name="Ingredients" positionX="77.81768798828125" positionY="248.098388671875" width="128" height="134"/>
         <element name="Meal" positionX="-341.9925537109375" positionY="90.91256713867188" width="128" height="119"/>
     </elements>
