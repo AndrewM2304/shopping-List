@@ -17,37 +17,41 @@ struct ingredientListView : View{
     @Environment(\.managedObjectContext) var managedObjectContext
 
     
-//    init(ingredientObject: Ingredients? = nil,
-//         shoppingListItem: Bool,
-//         viewing: Int
-//    ){
-//
-//        addIngredientObject.ingredientObject = ingredientObject
-//        addIngredientObject.ingredientName = ingredientObject?.ingredientName ?? ""
-//        addIngredientObject.ingredientQuantity = ingredientObject?.ingredientQuantity ?? 1
-//        addIngredientObject.enumSwitch = ingredientObject?.ingredientTypeNameStatus ?? .items
-//        addIngredientObject.selectedIngredient = Ingredients?
-//
-//    }
-    
-    
     
     var body: some View{
         VStack (spacing: 0){
         ForEach(arrayName){ mealIngredient in
+            
             HStack {
                 checkmarkItemView(shoppingListItem: shoppingListItem, ingredient: mealIngredient, buttonAction: {mealIngredient.isSelected.toggle(); viewing += 1}, popupAction: {
-                    
+
                     addIngredientObject.selectedIngredient = mealIngredient
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                        showOverlay.toggle()
-//                    }
                 }, viewing: viewing)
+                Button(action: {
+                   deleteIngredient(ingredient: mealIngredient)
+                    viewing += 1
+                }, label: {
+                    Image(systemName: "trash.fill")
+                .foregroundColor(Color(#colorLiteral(red: 0.8588235294, green: 0.168627451, blue: 0.4666666667, alpha: 1)))
+                })
+                .padding(5)
+                .padding(.trailing, 10)
+                    
+                
             }
             .padding(.vertical, 5)
         }
         }
+        
     }
+    func deleteIngredient(ingredient: Ingredients){
+        arrayName.removeAll{ value in
+            return (value.wrappedIngredientName == ingredient.wrappedIngredientName);
+        }
+    managedObjectContext.delete(ingredient)
+       
+    }
+
     
 }
 

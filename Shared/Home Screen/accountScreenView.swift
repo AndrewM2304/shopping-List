@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct accountScreenView: View {
     @AppStorage("theme", store: UserDefaults(suiteName: "group.Andrew-Miller.shoppingList")) var currentTheme: colorTheme = .green
+    @Binding var onboarding: Bool
     @State var themeShow = false
     @State var dataShow = false
     @State var aboutShow = false
     @State var feedbackShow = false
+    @State var int = 0
+    
     
     var body: some View {
         
@@ -45,7 +49,7 @@ struct accountScreenView: View {
             VStack{
                 DisclosureGroup(
                     isExpanded: $themeShow,
-                    content: {  themeSelectorView().padding(.vertical) },
+                    content: {  themeSelectorView( int: $int).padding(.vertical) },
                     label: {
                         
                         Button(action: {withAnimation{
@@ -87,49 +91,22 @@ struct accountScreenView: View {
                 ).accentColor(Color.white.opacity(0.6))
                 Divider().background(Color.white.opacity(0.2))
                 
+
                 
-                //about
-                DisclosureGroup(
-                    isExpanded: $aboutShow,
-                    content: {  themeSelectorView().padding(.vertical) },
-                    label: {
-                        
-                        Button(action: {withAnimation{
-                            self.aboutShow.toggle()
-                        }}, label: {
-                            HStack (spacing: 15){
-                                Image(systemName: "info.circle.fill").foregroundColor(currentTheme.colors.accentColor)
-                                    .frame(width: 30)
-                                Text("About Appname").interTextStyle(text: "Inter-ExtraBold", size: 15, color: .white)
-                                Spacer()
-                            }
-                            .background(Color.black.opacity(0.01))
-                            .padding(.vertical)
-                        })
-                    }
-                ).accentColor(Color.white.opacity(0.6))
-                Divider().background(Color.white.opacity(0.2))
                 
-                //feedback
-                DisclosureGroup(
-                    isExpanded: $feedbackShow,
-                    content: {  themeSelectorView().padding(.vertical) },
-                    label: {
-                        
-                        Button(action: {withAnimation{
-                            self.feedbackShow.toggle()
-                        }}, label: {
-                            HStack (spacing: 15){
-                                Image(systemName: "quote.bubble.fill").foregroundColor(currentTheme.colors.accentColor)
-                                    .frame(width: 30)
-                                Text("Send Feedback").interTextStyle(text: "Inter-ExtraBold", size: 15, color: .white)
-                                Spacer()
-                            }
-                            .background(Color.black.opacity(0.01))
-                            .padding(.vertical)
-                        })
+                //rate
+                Button(action: {withAnimation{
+                    requestReview()
+                }}, label: {
+                    HStack (spacing: 15){
+                        Image(systemName: "heart.fill").foregroundColor(currentTheme.colors.accentColor)
+                            .frame(width: 30)
+                        Text("Rate on the App Store").interTextStyle(text: "Inter-ExtraBold", size: 15, color: .white)
+                        Spacer()
                     }
-                ).accentColor(Color.white.opacity(0.6))
+                    .background(Color.black.opacity(0.01))
+                    .padding(.vertical)
+                })
                 Divider().background(Color.white.opacity(0.2))
                 
                 
@@ -141,6 +118,13 @@ struct accountScreenView: View {
         .edgesIgnoringSafeArea(.bottom)
         
     }
+    func requestReview() {
+        if let scene = UIApplication.shared.currentScene {
+            SKStoreReviewController.requestReview(in: scene)
+        }
+       }
+    
+
     
 }
 
@@ -151,22 +135,23 @@ struct accountScreenView: View {
 
 
 struct accountScreenView_Previews: PreviewProvider {
+    @State static var onboarding =  false
     static var previews: some View {
-        accountScreenView()
+        accountScreenView(onboarding: $onboarding)
     }
 }
 
 struct themeSelectorView: View {
     @AppStorage("theme", store: UserDefaults(suiteName: "group.Andrew-Miller.shoppingList")) var currentTheme: colorTheme = .green
-    
+    @Binding var int: Int
     var body: some View {
         
         HStack (spacing: 20){
-            ThemePickerButton(color: .green)
-            ThemePickerButton(color: .orange)
-            ThemePickerButton(color: .blue)
-            ThemePickerButton(color: .purple)
-            ThemePickerButton(color: .red)
+            ThemePickerButton(color: .green, int: $int)
+            ThemePickerButton(color: .orange, int: $int)
+            ThemePickerButton(color: .blue, int: $int)
+            ThemePickerButton(color: .purple, int: $int)
+            ThemePickerButton(color: .red, int: $int)
             Spacer()
         }
         
@@ -181,8 +166,9 @@ struct themeSelectorView: View {
 struct ThemePickerButton: View {
     @AppStorage("theme", store: UserDefaults(suiteName: "group.Andrew-Miller.shoppingList")) var currentTheme: colorTheme = .green
     var color: colorTheme
+    @Binding var int: Int
     var body: some View {
-        Button(action: {changeTheme(to: color)}, label: {
+        Button(action: {changeTheme(to: color, int: int)}, label: {
             
             
             Circle()
@@ -197,8 +183,8 @@ struct ThemePickerButton: View {
             
         })
     }
-    func changeTheme(to theme: colorTheme){
+    func changeTheme(to theme: colorTheme, int: Int){
         currentTheme = theme
-        
+        self.int += 1
     }
 }

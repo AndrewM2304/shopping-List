@@ -52,7 +52,7 @@ struct addMealView: View {
                         textfieldSection(sectionHeader: "Meal Name", textField: $mealNameText, keyboardType: .default, color: currentTheme.colors.accentColor, keyboardReturn: {})
                         
                         textfieldSection(sectionHeader: "Link to Recipe", textField: $mealLinkText, keyboardType: .URL, color: currentTheme.colors.accentColor, keyboardReturn: {})
-                        textfieldSection(sectionHeader: "Notes about meal", textField: $mealNotesText, keyboardType: .default, multiLine: true, color: currentTheme.colors.accentColor, keyboardReturn: {})
+                        notesSection(sectionHeader: "Meal Notes", textField: $mealNotesText, color: currentTheme.colors.accentColor)
                         
                     }
                     .padding()
@@ -170,6 +170,6 @@ struct addMealView_Previews: PreviewProvider {
         newMeal.meal = [newDate]
         
         
-        return addMealView()
+        return addMealView().preferredColorScheme(.dark)
     }
 }

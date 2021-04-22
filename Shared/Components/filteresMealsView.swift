@@ -16,6 +16,7 @@ struct filteredMealsView: View {
     @State var deletedMeal : Meal?
     @Binding var showingAlert: Bool
     var body: some View {
+        VStack (spacing: 5){
         ForEach(sortmyArray(meal: fetchRequest.wrappedValue)){ mealItem in
             mealCardView(mealItem: mealItem, selectedDate: selectedDate, dateRemove: {
                 self.showingAlert.toggle()
@@ -32,7 +33,20 @@ struct filteredMealsView: View {
                                 .cancel()
                             ])
             }
-            
+            .contextMenu(ContextMenu(menuItems: {
+                Button(action: {editItem(mealItem: mealItem)}, label: {
+                    Text("Edit Meal")
+                })
+                Button(action: {
+                    self.showingAlert.toggle()
+                    self.deletedMeal = mealItem
+                }, label: {
+                    Text("Delete Meal")
+                })
+               
+               
+            }))
+        }
         }
         
     }

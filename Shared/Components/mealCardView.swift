@@ -145,7 +145,8 @@ struct mealCardView: View {
                                 if(mealItem.wrappedMealNotes != ""){
                                     Text(mealItem.wrappedMealNotes)
                                         .interTextStyle(text: "Inter-Medium", size: 15, color: Color.white.opacity(0.6))
-                                        .lineLimit(3)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                        .layoutPriority(1)
                                 } else {
                                     Text("No meal notes saved")
                                         .interTextStyle(text: "Inter-Medium", size: 15, color: Color.white.opacity(0.6))
@@ -307,10 +308,10 @@ struct mealCardView_Previews: PreviewProvider {
         let newMeal = Meal(context:viewContext)
         newMeal.mealName = "burgers and chips"
         newMeal.mealLink = "www.google.com"
-        newMeal.mealNotes = ""
+        newMeal.mealNotes = "STEP 1 To make the filling, heat the oven to 160C/140C  fan/gas 3. Heat half the oil in a large casserole dish, brown the meat really well in batches, then set aside. Add the onions adding a drizzle more oil, then cook on a low heat for 5 mins "
         newMeal.myIngredientList = [newIngredient, newIngredient2]
         newMeal.meal = [newDate, newDate]
         
-        return mealCardView(mealItem: newMeal, selectedDate: prevDate, isTapped: false, dateRemove: {}, editItem: {}).environment(\.managedObjectContext, viewContext)
+        return mealCardView(mealItem: newMeal, selectedDate: prevDate, isTapped: true, dateRemove: {}, editItem: {}).environment(\.managedObjectContext, viewContext)
     }
 }
