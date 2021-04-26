@@ -69,52 +69,6 @@ struct onboardingView: View {
         
     }
     
-//    func imageShow(theme: Bool, height: GeometryProxy, colorTheme: colorTheme) -> some View {
-//        if(theme == false){
-//            return AnyView(
-//                Image(image)
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(height: height.size.height / 2.2)
-//            )
-//        } else{
-//
-//               switch currentTheme{
-//               case .green :
-//                return AnyView(
-//                    Image(colorChange)
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(height: height.size.height / 2.2))
-//               case .blue:
-//               return  AnyView(
-//                Image("Blue Home")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(height: height.size.height / 2.2))
-//               case .red:
-//               return  AnyView(
-//                Image("Red Home")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(height: height.size.height / 2.2))
-//               case .orange:
-//               return  AnyView(
-//                Image("Orange Home")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(height: height.size.height / 2.2))
-//               case .purple:
-//                return  AnyView(
-//                    Image("Purple Home")
-//                         .resizable()
-//                         .aspectRatio(contentMode: .fit)
-//                         .frame(height: height.size.height / 2.2))
-//               }
-//           }
-//
-//
-//        }
     
     func imageShow(theme: Bool, height: GeometryProxy, colorTheme: colorTheme, colorChange: String) -> some View {
 

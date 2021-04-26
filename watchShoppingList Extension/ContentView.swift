@@ -53,11 +53,19 @@ struct ContentView: View {
           completedItems(fetch: listingredients)
                     
             }
+            }.onAppear{
+                refresher()
             }
                 
             
             
         }
+    
+    func refresher(){
+        viewContext.refreshAllObjects()
+    }
+    
+
     
     func remainingItems(fetch: FetchedResults
     <Ingredients>, bool: Bool) -> Int{
@@ -121,6 +129,8 @@ struct ContentView: View {
             print("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
+    
+ 
     
     
     

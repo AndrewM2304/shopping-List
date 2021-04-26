@@ -75,10 +75,13 @@ struct widgetIngredientListEntryView : View {
                             } else {
                             
                             ForEach(ingredientList){ ingredient in
+                                
+                                if(ingredient.isChecked == false){
                                 HStack {
                                     Image(systemName: "square").foregroundColor(.white)
                                     Text(ingredient.wrappedIngredientName).foregroundColor(.white)
                                 }
+                            }
                             }
                             }
                             }

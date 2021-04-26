@@ -107,8 +107,6 @@ struct accountScreenView: View {
                     .background(Color.black.opacity(0.01))
                     .padding(.vertical)
                 })
-                Divider().background(Color.white.opacity(0.2))
-                
                 
             }
             .padding()
@@ -146,14 +144,20 @@ struct themeSelectorView: View {
     @Binding var int: Int
     var body: some View {
         
-        HStack (spacing: 20){
+        HStack{
+            
+           
             ThemePickerButton(color: .green, int: $int)
-            ThemePickerButton(color: .orange, int: $int)
-            ThemePickerButton(color: .blue, int: $int)
-            ThemePickerButton(color: .purple, int: $int)
-            ThemePickerButton(color: .red, int: $int)
             Spacer()
+            ThemePickerButton(color: .orange, int: $int)
+            Spacer()
+            ThemePickerButton(color: .blue, int: $int)
+            Spacer()
+            ThemePickerButton(color: .purple, int: $int)
+            Spacer()
+            ThemePickerButton(color: .red, int: $int)
         }
+        .padding(.horizontal)
         
     }
     

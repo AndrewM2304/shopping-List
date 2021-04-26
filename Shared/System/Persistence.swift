@@ -83,8 +83,10 @@ class PersistenceController: ObservableObject {
                 container = NSPersistentCloudKitContainer(name: "shopping_List")
                 storeDescription = NSPersistentStoreDescription(url: storeURL)
                 container.persistentStoreDescriptions = [storeDescription]
-        storeDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.Shopping_List_App")
+        storeDescription.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.icloud.container.get.prepped")
 
+        storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        storeDescription.setOption(true as NSObject, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
         
         
 //        container = NSPersistentCloudKitContainer(name: "shopping_List")
@@ -102,5 +104,7 @@ class PersistenceController: ObservableObject {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        container.viewContext.automaticallyMergesChangesFromParent = true
     }
 }
