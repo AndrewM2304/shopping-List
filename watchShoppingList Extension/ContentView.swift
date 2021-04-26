@@ -15,10 +15,13 @@ struct ContentView: View {
     
 
 
-        @FetchRequest(
-            entity: Ingredients.entity(),
-            sortDescriptors: [NSSortDescriptor(keyPath: \Ingredients.ingredientName, ascending: true)],
-            animation: .default)
+       
+            
+    @FetchRequest(
+        entity: Ingredients.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Ingredients.ingredientName, ascending: true)],
+        predicate: NSPredicate(format: "isSelected == YES"),
+        animation: .default)
     
         
         private var listingredients: FetchedResults<Ingredients>
@@ -28,42 +31,93 @@ struct ContentView: View {
            
                
             ScrollView{
-                VStack (alignment: .leading, spacing: 10){
-                Text("Remaining Items")
-                    
-                    
-                    ForEach(listingredients){ ingredient in
+                VStack (alignment: .leading, spacing: 5){
 
-                    if(ingredient.isSelected == true && !ingredient.isChecked){
-                       
-                        Button(action: {
-                            checkItem(ingredient: ingredient)
-                            print("\(ingredient.wrappedIngredientName) is checked")
-                        }, label: {
-                            watchCheckmark(ingredient: ingredient)
-                        })
+                    VStack  (alignment: .leading, spacing: 5){
+                        Text("Shopping List ").bold()
+                        Text("(\(remainingItems(fetch: listingredients, bool: false)) items)").font(.caption)
+                            .opacity(0.8)
                     }
-                }
+                    Divider().background(currentTheme.colors.gradient)
+                    
+                    
+                    remainingItems(fetch: listingredients)
                     Divider()
-                    Text("Completed Items")
-                    ForEach(listingredients){ ingredient in
-
-                        if(ingredient.isSelected == true && ingredient.isChecked){
-                           
-                            Button(action: {
-                                checkItem(ingredient: ingredient)
-                                print("\(ingredient.wrappedIngredientName) is checked")
-                            }, label: {
-                                watchCheckmark(ingredient: ingredient)
-                            })
-                        }
+                        .padding()
+                    VStack  (alignment: .leading, spacing: 5){
+                        Text("Completed Items").bold()
+                        Text("(\(remainingItems(fetch: listingredients, bool: true)) items)").font(.caption)
+                            .opacity(0.8)
                     }
+                    Divider().background(currentTheme.colors.gradient)
+          completedItems(fetch: listingredients)
+                    
             }
+            }.onAppear{
+                refresher()
             }
                 
             
             
         }
+    
+    func refresher(){
+        viewContext.refreshAllObjects()
+    }
+    
+
+    
+    func remainingItems(fetch: FetchedResults
+    <Ingredients>, bool: Bool) -> Int{
+        let count = fetch.filter{ $0.isChecked == bool}
+        return count.count
+    }
+    
+    func remainingItems(fetch: FetchedResults
+    <Ingredients>) -> some View{
+        let count = fetch.filter{ $0.isChecked == false}
+        
+        if (count.count == 0){
+            return AnyView(Text("No Items Remaining")
+                            .padding(.vertical)
+                .foregroundColor(Color.white.opacity(0.8)))
+        } else {
+            return  AnyView(
+                ForEach(count){ ingredient in
+                    Button(action: {
+                        checkItem(ingredient: ingredient)
+                        print("\(ingredient.wrappedIngredientName) is checked")
+                    }, label: {
+                        watchCheckmark(ingredient: ingredient)
+                    })
+            }
+            )
+        }
+    }
+    
+    func completedItems(fetch: FetchedResults
+    <Ingredients>) -> some View{
+        let count2 = fetch.filter{ $0.isChecked == true}
+        
+        if (count2.count == 0){
+            return AnyView(Text("No Items Completed")
+                            .padding(.vertical)
+                .foregroundColor(Color.white.opacity(0.8)))
+        } else {
+            return  AnyView(
+                ForEach(count2){ ingredient in
+                    Button(action: {
+                        checkItem(ingredient: ingredient)
+                        print("\(ingredient.wrappedIngredientName) is checked")
+                    }, label: {
+                        watchCheckmark(ingredient: ingredient)
+                    })
+            }
+            )
+        }
+    }
+    
+    
     func checkItem(ingredient: Ingredients){
         ingredient.isChecked.toggle()
         do {
@@ -71,12 +125,14 @@ struct ContentView: View {
             try viewContext.save()
 
         } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            print("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
+    
+ 
+    
+    
     
 
     }

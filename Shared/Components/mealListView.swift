@@ -23,6 +23,7 @@ struct mealListView: View {
     @State var selectedMealItem : Meal?
     @State var searchtext = ""
     @State var placeholder = "Search Meals"
+    @State var showAlert = false
 
 
 
@@ -45,14 +46,14 @@ struct mealListView: View {
                 ForEach(listmeal.filter({ searchtext.isEmpty ? true : $0.wrappedMealName.contains(searchtext) })) { meal in
                         
                         VStack(alignment: .leading, spacing: 0){
-
-                            HStack {
+                            HStack{
+                                HStack (spacing: 15){
+                                Image(systemName: "plus.circle.fill")
+                                    .foregroundColor(currentTheme.colors.accentColor)
+                                
                                 Text(meal.wrappedMealName)
                                     .interTextStyle(text: "Inter-SemiBold", size: 15, color: .white)
                                 Spacer()
-                                Image(systemName: "plus.circle.fill")
-                                    .foregroundColor(currentTheme.colors.accentColor)
-
                             }
                             .background(Color.black.opacity(0.01))
                             .onTapGesture {
@@ -60,20 +61,36 @@ struct mealListView: View {
                                 self.selected.toggle()
                             }
                             .background(Color.clear)
+                                Button(action: {
+                                    self.showAlert.toggle()
+                                    selectedMealItem = meal
+                                }, label: {
+                                    Image(systemName: "trash.fill")
+                                .foregroundColor(Color(#colorLiteral(red: 0.8588235294, green: 0.168627451, blue: 0.4666666667, alpha: 1)))
+                                })
+                                .padding(5)
+                                .padding(.leading, 20)
+                        }
+                            
+                            
 
 
                             Divider().background(Color.white.opacity(0.2))
                                 .padding(.vertical)
                     }
-                        .background(Color.black.opacity(0.01))
-                        .onTapGesture {
-                            self.selectedMealItem = meal
-                            self.selected.toggle()
-                        }
-                    
-                    }
+                }
                     .padding(.horizontal, 15)
-              
+                .alert(isPresented: $showAlert,
+                       content: {
+                        Alert(title: Text("Delete \(selectedMealItem?.wrappedMealName ?? "meal")"),
+                              message: Text("Are you sure?"),
+                              primaryButton: .destructive(Text("Delete")) {
+                                                  removeMeal(meal: selectedMealItem!)
+                                              },
+                                              secondaryButton: .cancel())
+                        
+                        
+                       })
                 
                 
             } else{
@@ -87,19 +104,20 @@ struct mealListView: View {
         
         
     }
-    func removeMeal(at offsets: IndexSet) {
-        for index in offsets {
-            let meal = listmeal[index]
+    
+    func removeMeal(meal: Meal) {
+        
+        withAnimation{
             viewContext.delete(meal)
+        }
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                
                 let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                print("Unresolved error \(nsError), \(nsError.userInfo)")
             }
-        }
+        
     }
     
 

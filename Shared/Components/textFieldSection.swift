@@ -12,7 +12,6 @@ struct textfieldSection: View {
     @State var sectionHeader: String
     @Binding var textField:String
     @State var keyboardType : UIKeyboardType
-    @State var multiLine = false
     @State var color: Color
     var keyboardReturn: () -> Void
     

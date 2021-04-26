@@ -25,7 +25,7 @@ struct watchCheckmark: View {
                 Text(ingredient.wrappedIngredientName)
                     .strikethrough(color: ingredient.isChecked ? Color.white : Color.clear)
                     .font(.subheadline)
-                Text("\(ingredient.ingredientQuantity) \(ingredient.ingredientMeasurement! ) hello")
+                Text("\(ingredient.ingredientQuantity) \(ingredient.ingredientMeasurement! )")
                     .strikethrough(color: ingredient.isChecked ? Color.white.opacity(0.6) : Color.clear)
                     .font(.caption)
                     .foregroundColor(Color.white.opacity(0.6))

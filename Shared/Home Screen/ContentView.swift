@@ -25,6 +25,7 @@ struct ContentView: View {
 
     @Environment(\.managedObjectContext) private var viewContext
     @StateObject var plannerVm = plannerVM()
+    @AppStorage("onboarding", store: UserDefaults(suiteName: "group.Andrew-Miller.shoppingList")) var onboarding = true
     
     var body: some View {
         
@@ -56,10 +57,11 @@ struct ContentView: View {
                        
                 } else if (accountShow == true){
                     
-                    accountScreenView()
+                    accountScreenView(onboarding: $onboarding)
                           
                 }
             tabBarView(plannerActive: $planShow, listActive: $listShow, accountActive: $accountShow, selectedDate: $selectedDate, geo: geo.size.width)
+            
                
         }
         .fullScreenCover(isPresented: $addMealPopup) {
@@ -67,21 +69,16 @@ struct ContentView: View {
 
         }
         .background(EmptyView().sheet(isPresented: $calendarShow, content: {
-                        calendarViewTwo(selectedDate: $selectedDate)
+                        calendarViewTwo(selectedDate: $selectedDate).environment(\.managedObjectContext, self.viewContext)
                     }))
-
-        }.ignoresSafeArea()
-//        .sheet(isPresented: $calendarShow, content: {
-//            calendarViewTwo(selectedDate: $selectedDate)
-//        })
-            
-            
-            
-
-
-            
+        .background(EmptyView().sheet(isPresented: $onboarding, content: {
+            onBoardingPageView()
+                    }))
             
        
+       
+
+        }.ignoresSafeArea()
     }
 
 

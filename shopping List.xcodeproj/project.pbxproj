@@ -14,10 +14,18 @@
 		F8025C6225D126700070667D /* ingredientListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8025C6125D126700070667D /* ingredientListView.swift */; };
 		F8025C7F25D1902B0070667D /* selectMealButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8025C7E25D1902B0070667D /* selectMealButtonView.swift */; };
 		F8025C8525D1A9CD0070667D /* addDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8025C8425D1A9CD0070667D /* addDateView.swift */; };
+		F804041E263177800003E98E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8F859E0259CB72C0093A3C8 /* Assets.xcassets */; };
+		F8040425263177840003E98E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8F859E0259CB72C0093A3C8 /* Assets.xcassets */; };
+		F804042C263177850003E98E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8F859E0259CB72C0093A3C8 /* Assets.xcassets */; };
+		F80404E426318AF10003E98E /* watchShoppingList.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F84855B8261A6454007CF540 /* watchShoppingList.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F807BEC92636FCF50047ABB5 /* onboardingTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807BEC82636FCF50047ABB5 /* onboardingTemplate.swift */; };
+		F807BEDD263706400047ABB5 /* tutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807BEDC263706400047ABB5 /* tutorialView.swift */; };
 		F808E601260B222E00042376 /* plannerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F808E600260B222E00042376 /* plannerVM.swift */; };
 		F80DA51B25D3FD0E00DAC297 /* ingredientVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80DA51A25D3FD0E00DAC297 /* ingredientVM.swift */; };
 		F81424422605F6A100FC156E /* radialBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81424412605F6A100FC156E /* radialBackgroundView.swift */; };
 		F818A3CB25A239C60084CC90 /* themePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F818A3CA25A239C60084CC90 /* themePicker.swift */; };
+		F822DD7E262F3B9C005D7F63 /* onboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822DD7D262F3B9C005D7F63 /* onboardingView.swift */; };
+		F822DD8C262F3F00005D7F63 /* onBoarding Page View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F822DD8B262F3F00005D7F63 /* onBoarding Page View.swift */; };
 		F836B0B2261E4A78001C32DC /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F859DF259CB72C0093A3C8 /* Persistence.swift */; };
 		F836B0B8261E4A8F001C32DC /* themePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F818A3CA25A239C60084CC90 /* themePicker.swift */; };
 		F836B135261F9239001C32DC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F836B134261F9239001C32DC /* WidgetKit.framework */; };
@@ -78,6 +86,7 @@
 		F878D34F259CB96E00E4595D /* tabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F878D34E259CB96E00E4595D /* tabBarView.swift */; };
 		F87932D7261E15D300E87A0C /* deviceIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87932D6261E15D300E87A0C /* deviceIdentifiers.swift */; };
 		F87932FC261E18B300E87A0C /* watchCheckmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87932FB261E18B300E87A0C /* watchCheckmark.swift */; };
+		F87D36F8263087CC0036CE84 /* notesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87D36F7263087CC0036CE84 /* notesSection.swift */; };
 		F87F3E5125A100F200031211 /* menuPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87F3E5025A100F200031211 /* menuPopupView.swift */; };
 		F8859835261CBABF00547718 /* sectionBreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8859834261CBABF00547718 /* sectionBreak.swift */; };
 		F885983C261CBC8000547718 /* textFieldSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885983B261CBC7F00547718 /* textFieldSection.swift */; };
@@ -91,7 +100,6 @@
 		F8AF578D25A51887005994CA /* dateviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AF578C25A51887005994CA /* dateviewModel.swift */; };
 		F8B728DD261A6DF400EEB3A2 /* shopping_List.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F8F859DB259CB72C0093A3C8 /* shopping_List.xcdatamodeld */; };
 		F8B728EA261B08D500EEB3A2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B728E9261B08D500EEB3A2 /* CloudKit.framework */; };
-		F8B728FB261B09BC00EEB3A2 /* watchShoppingList.app in Resources */ = {isa = PBXBuildFile; fileRef = F84855B8261A6454007CF540 /* watchShoppingList.app */; };
 		F8B7294D261B27BA00EEB3A2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B7294C261B27BA00EEB3A2 /* CoreData.framework */; };
 		F8CE2C1E25FCB65800272722 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8CE2C1525FCB65800272722 /* Inter-Regular.ttf */; };
 		F8CE2C1F25FCB65800272722 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8CE2C1625FCB65800272722 /* Inter-Black.ttf */; };
@@ -102,6 +110,8 @@
 		F8CE2C2425FCB65800272722 /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8CE2C1B25FCB65800272722 /* Inter-Thin.ttf */; };
 		F8CE2C2525FCB65800272722 /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8CE2C1C25FCB65800272722 /* Inter-ExtraBold.ttf */; };
 		F8CE2C2625FCB65800272722 /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F8CE2C1D25FCB65800272722 /* Inter-ExtraLight.ttf */; };
+		F8D90BA826318F0D0062C6DB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F848559626186C12007CF540 /* CloudKit.framework */; };
+		F8D90BE22635FABB0062C6DB /* testerplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D90BE12635FABB0062C6DB /* testerplayer.swift */; };
 		F8DB62012625D1DC00F5F848 /* IngredientListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB62002625D1DC00F5F848 /* IngredientListWidget.swift */; };
 		F8DB62022625D1DC00F5F848 /* IngredientListWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB62002625D1DC00F5F848 /* IngredientListWidget.swift */; };
 		F8DB62112625D3BE00F5F848 /* widgetGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB620F2625D3BE00F5F848 /* widgetGroup.swift */; };
@@ -166,6 +176,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
+				F80404E426318AF10003E98E /* watchShoppingList.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,10 +202,14 @@
 		F8025C6125D126700070667D /* ingredientListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredientListView.swift; sourceTree = "<group>"; };
 		F8025C7E25D1902B0070667D /* selectMealButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = selectMealButtonView.swift; sourceTree = "<group>"; };
 		F8025C8425D1A9CD0070667D /* addDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addDateView.swift; sourceTree = "<group>"; };
+		F807BEC82636FCF50047ABB5 /* onboardingTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingTemplate.swift; sourceTree = "<group>"; };
+		F807BEDC263706400047ABB5 /* tutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tutorialView.swift; sourceTree = "<group>"; };
 		F808E600260B222E00042376 /* plannerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plannerVM.swift; sourceTree = "<group>"; };
 		F80DA51A25D3FD0E00DAC297 /* ingredientVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingredientVM.swift; sourceTree = "<group>"; };
 		F81424412605F6A100FC156E /* radialBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = radialBackgroundView.swift; sourceTree = "<group>"; };
 		F818A3CA25A239C60084CC90 /* themePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = themePicker.swift; sourceTree = "<group>"; };
+		F822DD7D262F3B9C005D7F63 /* onboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingView.swift; sourceTree = "<group>"; };
+		F822DD8B262F3F00005D7F63 /* onBoarding Page View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "onBoarding Page View.swift"; sourceTree = "<group>"; };
 		F836B0BE261F2BBB001C32DC /* watchShoppingList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = watchShoppingList.entitlements; sourceTree = "<group>"; };
 		F836B133261F9239001C32DC /* widgetShoppingListExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetShoppingListExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F836B134261F9239001C32DC /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -230,6 +245,7 @@
 		F878D34E259CB96E00E4595D /* tabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarView.swift; sourceTree = "<group>"; };
 		F87932D6261E15D300E87A0C /* deviceIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = deviceIdentifiers.swift; sourceTree = "<group>"; };
 		F87932FB261E18B300E87A0C /* watchCheckmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchCheckmark.swift; sourceTree = "<group>"; };
+		F87D36F7263087CC0036CE84 /* notesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notesSection.swift; sourceTree = "<group>"; };
 		F87F3E5025A100F200031211 /* menuPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = menuPopupView.swift; sourceTree = "<group>"; };
 		F8859834261CBABF00547718 /* sectionBreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sectionBreak.swift; sourceTree = "<group>"; };
 		F885983B261CBC7F00547718 /* textFieldSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textFieldSection.swift; sourceTree = "<group>"; };
@@ -254,6 +270,7 @@
 		F8CE2C1B25FCB65800272722 /* Inter-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Thin.ttf"; sourceTree = "<group>"; };
 		F8CE2C1C25FCB65800272722 /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
 		F8CE2C1D25FCB65800272722 /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
+		F8D90BE12635FABB0062C6DB /* testerplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testerplayer.swift; sourceTree = "<group>"; };
 		F8DB62002625D1DC00F5F848 /* IngredientListWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientListWidget.swift; sourceTree = "<group>"; };
 		F8DB620F2625D3BE00F5F848 /* widgetGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = widgetGroup.swift; sourceTree = "<group>"; };
 		F8DB6FD925A78C19008D55C2 /* keyboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keyboardModel.swift; sourceTree = "<group>"; };
@@ -277,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8D90BA826318F0D0062C6DB /* CloudKit.framework in Frameworks */,
 				F836B136261F9239001C32DC /* SwiftUI.framework in Frameworks */,
 				F836B135261F9239001C32DC /* WidgetKit.framework in Frameworks */,
 			);
@@ -339,6 +357,18 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		F822DD76262F3B88005D7F63 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F822DD7D262F3B9C005D7F63 /* onboardingView.swift */,
+				F822DD8B262F3F00005D7F63 /* onBoarding Page View.swift */,
+				F8D90BE12635FABB0062C6DB /* testerplayer.swift */,
+				F807BEC82636FCF50047ABB5 /* onboardingTemplate.swift */,
+				F807BEDC263706400047ABB5 /* tutorialView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		F825BEA8261E487D009FBE69 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +385,7 @@
 				F885983B261CBC7F00547718 /* textFieldSection.swift */,
 				F8A6E2B8262DD6EA00F19251 /* filteresMealsView.swift */,
 				F8A6E2C6262E1AC900F19251 /* privacyPolicyView.swift */,
+				F87D36F7263087CC0036CE84 /* notesSection.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -473,6 +504,7 @@
 				F8707DCB25ACF7C6003E8345 /* Meal+CoreDataProperties.swift */,
 				F8A11F0D25ACCC470007A71E /* leftover.swift */,
 				F8F859DA259CB72C0093A3C8 /* Shared */,
+				F8F859E0259CB72C0093A3C8 /* Assets.xcassets */,
 				F8F859E7259CB72C0093A3C8 /* iOS */,
 				F8F859F8259CB72D0093A3C8 /* Tests iOS */,
 				F84855B9261A6454007CF540 /* watchShoppingList */,
@@ -486,13 +518,13 @@
 		F8F859DA259CB72C0093A3C8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				F822DD76262F3B88005D7F63 /* Onboarding */,
 				F858305F26051A5E00697AD0 /* Home Screen */,
 				F8025C3825D057B00070667D /* Add Meal */,
 				F825BEA8261E487D009FBE69 /* Components */,
 				F825BEAE261E48D7009FBE69 /* System */,
 				F818A3D025A239D40084CC90 /* ViewModels */,
 				F8F859DD259CB72C0093A3C8 /* shopping_ListApp.swift */,
-				F8F859E0259CB72C0093A3C8 /* Assets.xcassets */,
 				F8F859DB259CB72C0093A3C8 /* shopping_List.xcdatamodeld */,
 			);
 			path = Shared;
@@ -700,6 +732,7 @@
 			files = (
 				F85F6608261FAAD400D98F94 /* Inter-Thin.ttf in Resources */,
 				F85F6606261FAAD400D98F94 /* Inter-Bold.ttf in Resources */,
+				F804042C263177850003E98E /* Assets.xcassets in Resources */,
 				F85F660C261FAAD400D98F94 /* Inter-Light.ttf in Resources */,
 				F85F6609261FAAD400D98F94 /* Inter-Black.ttf in Resources */,
 				F85F660B261FAAD400D98F94 /* Inter-ExtraLight.ttf in Resources */,
@@ -715,6 +748,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F804041E263177800003E98E /* Assets.xcassets in Resources */,
 				F84855BB261A6457007CF540 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -724,6 +758,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F84855D4261A6458007CF540 /* Preview Assets.xcassets in Resources */,
+				F8040425263177840003E98E /* Assets.xcassets in Resources */,
 				F84855D1261A6458007CF540 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -732,7 +767,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8B728FB261B09BC00EEB3A2 /* watchShoppingList.app in Resources */,
 				F8CE2C2125FCB65800272722 /* Inter-Bold.ttf in Resources */,
 				F8F85A0F259CB72D0093A3C8 /* Assets.xcassets in Resources */,
 				F8CE2C2425FCB65800272722 /* Inter-Thin.ttf in Resources */,
@@ -816,17 +850,21 @@
 			files = (
 				F8A6E2C7262E1AC900F19251 /* privacyPolicyView.swift in Sources */,
 				F8A11F0E25ACCC470007A71E /* leftover.swift in Sources */,
+				F807BEC92636FCF50047ABB5 /* onboardingTemplate.swift in Sources */,
 				F8AF578D25A51887005994CA /* dateviewModel.swift in Sources */,
+				F87D36F8263087CC0036CE84 /* notesSection.swift in Sources */,
 				F8DB62182625D43600F5F848 /* widgetShoppingList.swift in Sources */,
 				F808E601260B222E00042376 /* plannerVM.swift in Sources */,
 				F8F85A07259CB72D0093A3C8 /* shopping_List.xcdatamodeld in Sources */,
 				F85E322225BDCC4B00A48C84 /* mealListView.swift in Sources */,
 				F88BF69125B810C0008499CD /* checkmarkItemView.swift in Sources */,
 				F8F888FA2600980800F9F8F9 /* calendarView.swift in Sources */,
+				F822DD8C262F3F00005D7F63 /* onBoarding Page View.swift in Sources */,
 				F8951F1D25D1DDBE0079FDCA /* Dates+CoreDataClass.swift in Sources */,
 				F840FC5D25A1C9C3003CA8F9 /* mealCardView.swift in Sources */,
 				F87932D7261E15D300E87A0C /* deviceIdentifiers.swift in Sources */,
 				F858306126051A6D00697AD0 /* plannerView.swift in Sources */,
+				F807BEDD263706400047ABB5 /* tutorialView.swift in Sources */,
 				F8DB6FDA25A78C19008D55C2 /* keyboardModel.swift in Sources */,
 				F8025C4025D059310070667D /* addMealView.swift in Sources */,
 				F862D25425D42DAC00289F92 /* Ingredients+CoreDataClass.swift in Sources */,
@@ -844,6 +882,7 @@
 				F8025C3A25D057C80070667D /* addMealVM.swift in Sources */,
 				F8025C3325CFF69E0070667D /* dismissKeyboard.swift in Sources */,
 				F83CAE4625A241D5001265D0 /* accountScreenView.swift in Sources */,
+				F8D90BE22635FABB0062C6DB /* testerplayer.swift in Sources */,
 				F8F85A0B259CB72D0093A3C8 /* ContentView.swift in Sources */,
 				F8DB62012625D1DC00F5F848 /* IngredientListWidget.swift in Sources */,
 				F81424422605F6A100FC156E /* radialBackgroundView.swift in Sources */,
@@ -851,6 +890,7 @@
 				F862D24E25D42D7C00289F92 /* Ingredients+CoreDataProperties.swift in Sources */,
 				F80DA51B25D3FD0E00DAC297 /* ingredientVM.swift in Sources */,
 				F8DB700C25A84113008D55C2 /* shoppingListView.swift in Sources */,
+				F822DD7E262F3B9C005D7F63 /* onboardingView.swift in Sources */,
 				F8025C6225D126700070667D /* ingredientListView.swift in Sources */,
 				F8025C7F25D1902B0070667D /* selectMealButtonView.swift in Sources */,
 				F84F05AF2623688A00EDAB9E /* calendarOverlay.swift in Sources */,
@@ -916,6 +956,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = "Andrew-Miller.shopping-List.widgetShoppingList";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -939,6 +980,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = "Andrew-Miller.shopping-List.widgetShoppingList";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -963,6 +1005,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = "Andrew-Miller.shopping-List.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -989,6 +1032,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = "Andrew-Miller.shopping-List.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
@@ -1018,6 +1062,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = "Andrew-Miller.shopping-List.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1047,6 +1092,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = "Andrew-Miller.shopping-List.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1190,6 +1236,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = "Andrew-Miller.shopping-List";
 				PRODUCT_NAME = "shopping List";
 				SDKROOT = iphoneos;
@@ -1214,6 +1261,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.02;
 				PRODUCT_BUNDLE_IDENTIFIER = "Andrew-Miller.shopping-List";
 				PRODUCT_NAME = "shopping List";
 				SDKROOT = iphoneos;
